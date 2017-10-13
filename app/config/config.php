@@ -292,6 +292,7 @@ return new Config(
         'thrift' => [
             'namespaces' => [
                 'MicroService',
+                'GithubService',
             ],
             'host' => env('APP_DOMAIN', '127.0.0.1'),
             'port' => 80,

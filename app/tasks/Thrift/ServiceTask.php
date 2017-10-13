@@ -4,6 +4,8 @@ namespace App\Tasks\Thrift;
 
 use App\Core\Cli\Task\Socket;
 use App\Thrift\Services\AppHandler;
+use App\Thrift\Services\GithubHandler;
+use GithubService\GithubProcessor;
 use MicroService\AppProcessor;
 use swoole_server;
 use Thrift\Protocol\TBinaryProtocol;
@@ -23,7 +25,7 @@ class ServiceTask extends Socket
         'max_request' => 500, // 每个worker进程最大处理请求次数
     ];
 
-    protected $port = 10086;
+    protected $port = 52100;
 
     protected $processor;
 
@@ -43,6 +45,8 @@ class ServiceTask extends Socket
         $this->processor = new TMultiplexedProcessor();
         $handler = new AppHandler();
         $this->processor->registerProcessor('app', new AppProcessor($handler));
+        $handler = new GithubHandler();
+        $this->processor->registerProcessor('github', new GithubProcessor($handler));
     }
 
     public function receive(swoole_server $server, $fd, $reactor_id, $data)
