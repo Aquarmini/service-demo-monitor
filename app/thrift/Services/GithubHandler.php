@@ -9,6 +9,7 @@
 namespace App\Thrift\Services;
 
 use App\Jobs\GithubCommitsJob;
+use App\Jobs\GithubReceivedEventJob;
 use App\Utils\Queue;
 use GithubService\GithubIf;
 
@@ -16,7 +17,8 @@ class GithubHandler extends Handler implements GithubIf
 {
     public function receivedEvents($token)
     {
-        return false;
+        Queue::push(new GithubReceivedEventJob($token));
+        return true;
     }
 
     public function commits($committer, $token)

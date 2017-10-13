@@ -14,5 +14,11 @@ class GithubTask extends Task
         $client->commits('limingxinleo', env('RECEIVED_EVENTS_TOKEN'));
     }
 
+    public function eventsAction()
+    {
+        $client = GithubClient::getInstance(['port' => 52100]);
+        $client->receivedEvents(env('RECEIVED_EVENTS_TOKEN'));
+    }
+
 }
 
