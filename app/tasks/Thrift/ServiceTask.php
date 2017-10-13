@@ -27,10 +27,13 @@ class ServiceTask extends Socket
         // 'worker_num' => 4, // cpu核数1-4倍比较合理 不写则为cpu核数
         'max_request' => 500, // 每个worker进程最大处理请求次数
     ];
-
-    protected $port = 52100;
-
+    
     protected $processor;
+
+    public function onConstruct()
+    {
+        $this->port = env('SERVICE_PORT');
+    }
 
     protected function events()
     {
