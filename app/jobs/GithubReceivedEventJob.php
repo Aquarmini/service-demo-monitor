@@ -26,7 +26,7 @@ class GithubReceivedEventJob implements JobInterface
         $api = '/users/limingxinleo/received_events/public';
         $data = [
             'page' => 1,
-            'per_page' => 2,
+            'per_page' => 5,
         ];
 
         $res = Curl::httpGet($api, $data, $token);
