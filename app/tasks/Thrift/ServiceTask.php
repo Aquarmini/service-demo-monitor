@@ -5,6 +5,7 @@ namespace App\Tasks\Thrift;
 use App\Core\Cli\Task\Socket;
 use App\Thrift\Services\AppHandler;
 use App\Thrift\Services\GithubHandler;
+use App\Utils\Log;
 use App\Utils\Redis;
 use GithubService\GithubProcessor;
 use MicroService\AppProcessor;
@@ -62,6 +63,7 @@ class ServiceTask extends Socket
 
                 $client->send(json_encode($data));
                 $result = $client->recv();
+                Log::info($result);
 
                 $result = json_decode($result, true);
                 if ($result['success']) {
