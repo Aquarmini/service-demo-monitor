@@ -26,7 +26,7 @@ class GithubCommitsJob implements JobInterface
 
         Log::info('commits:committer=' . $committer);
 
-        $date = date('Y-m-d');
+        $date = date('Y-m-d', time() - 8 * 3600);
         $redis_key = sprintf('github:commits:count:%s:%s', $committer, $date);
 
         $api = '/search/commits';
