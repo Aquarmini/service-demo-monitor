@@ -1,13 +1,9 @@
 namespace php Xin.Thrift.GithubService
 
-struct CommitsLog {
-    1: i64 id,
-    2: string username,
-    3: i32 commits
-}
+include "github/commits.thrift"
 
 service Github {
     bool receivedEvents(string token)
     bool commits(string committer, string token)
-    list<CommitsLog> commitsLog(string committer, i32 btime, i32 etime)
+    list<commits.CommitsLog> commitsLog(string committer, i32 btime, i32 etime)
 }
