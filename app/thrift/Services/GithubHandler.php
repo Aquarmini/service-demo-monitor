@@ -30,6 +30,8 @@ class GithubHandler extends Handler implements GithubIf
 
     public function commitsLog($committer, $btime, $etime)
     {
+        $btime = date('Y-m-d H:i:s', $btime);
+        $etime = date('Y-m-d H:i:s', $etime);
         return Commits::getCommitsLogs($committer, $btime, $etime);
     }
 }
