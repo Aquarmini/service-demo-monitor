@@ -9,5 +9,5 @@ struct CommitsLog {
 service Github {
     bool receivedEvents(string token)
     bool commits(string committer, string token)
-    list<CommitsLog> commitsLog(string committer)
+    list<CommitsLog> commitsLog(string committer, i32 btime, i32 etime)
 }

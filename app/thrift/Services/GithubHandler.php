@@ -10,7 +10,7 @@ namespace App\Thrift\Services;
 
 use App\Jobs\GithubCommitsJob;
 use App\Jobs\GithubReceivedEventJob;
-use App\Models\CommitsLog;
+use App\Logics\Github\Commits;
 use App\Utils\Queue;
 use GithubService\GithubIf;
 
@@ -28,9 +28,8 @@ class GithubHandler extends Handler implements GithubIf
         return true;
     }
 
-    public function commitsLog($committer)
+    public function commitsLog($committer, $btime, $etime)
     {
-        // TODO: Implement commitsLog() method.
-        return [];
+        return Commits::getCommitsLogs($committer, $btime, $etime);
     }
 }
