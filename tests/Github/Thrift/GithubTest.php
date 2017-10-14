@@ -8,6 +8,7 @@
 // +----------------------------------------------------------------------
 namespace Githb\Thrift;
 
+use App\Logics\Github\Commits;
 use \UnitTestCase;
 
 /**
@@ -15,10 +16,12 @@ use \UnitTestCase;
  */
 class GithubTest extends UnitTestCase
 {
-    public function testBaseCase()
+    public function testCommitsLog()
     {
-        $this->assertTrue(
-            extension_loaded('phalcon')
-        );
+        $btime = date('Y-m-d');
+        $etime = date('Y-m-d', time() + 3600 * 24);
+
+        $logs = Commits::getCommitsLogs('limingxinleo', $btime, $etime);
+        $this->assertTrue(is_array($logs));
     }
 }
