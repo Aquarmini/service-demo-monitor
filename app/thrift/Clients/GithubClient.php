@@ -12,7 +12,7 @@ class GithubClient extends Client
 
     protected $service = 'github';
 
-    protected $clientName = \GithubService\GithubClient::class;
+    protected $clientName = \Xin\Thrift\GithubService\GithubClient::class;
 
 }
 
