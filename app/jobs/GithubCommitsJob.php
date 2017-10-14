@@ -3,6 +3,7 @@
 namespace App\Jobs;
 
 use App\Jobs\Contract\JobInterface;
+use App\Models\CommitsLog;
 use App\Utils\Curl;
 use App\Utils\Log;
 use App\Utils\Redis;
@@ -69,6 +70,11 @@ class GithubCommitsJob implements JobInterface
         if ($result['errcode'] == 0 && $result['errmsg'] == "ok") {
             Redis::set($redis_key, $count);
             Redis::expire($redis_key, 3600 * 24);
+
+            $model = new CommitsLog();
+            $model->commits = $count;
+            $model->username = $committer;
+            $model->save();
             return true;
         }
 
