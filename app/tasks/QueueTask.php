@@ -13,7 +13,7 @@ class QueueTask extends Queue
     public $description = '默认消息执行脚本';
 
     // 最大进程数
-    protected $maxProcesses = 2;
+    protected $maxProcesses = 10;
 
     // 子进程最大循环处理次数
     protected $processHandleMaxNumber = 100;
