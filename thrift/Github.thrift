@@ -1,4 +1,4 @@
-namespace php Xin.Thrift.GithubService
+namespace php Xin.Thrift.MonitorService
 
 include "github/commits.thrift"
 

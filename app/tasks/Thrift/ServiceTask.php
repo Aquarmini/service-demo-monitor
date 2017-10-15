@@ -8,7 +8,7 @@ use App\Thrift\Services\GithubHandler;
 use App\Utils\Log;
 use App\Utils\Redis;
 use Xin\Phalcon\Logger\Sys;
-use Xin\Thrift\GithubService\GithubProcessor;
+use Xin\Thrift\MonitorService\GithubProcessor;
 use Xin\Thrift\MicroService\AppProcessor;
 use swoole_server;
 use Thrift\Protocol\TBinaryProtocol;

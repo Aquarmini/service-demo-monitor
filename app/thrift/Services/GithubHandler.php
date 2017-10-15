@@ -12,7 +12,7 @@ use App\Jobs\GithubCommitsJob;
 use App\Jobs\GithubReceivedEventJob;
 use App\Logics\Github\Commits;
 use App\Utils\Queue;
-use Xin\Thrift\GithubService\GithubIf;
+use Xin\Thrift\MonitorService\GithubIf;
 
 class GithubHandler extends Handler implements GithubIf
 {
