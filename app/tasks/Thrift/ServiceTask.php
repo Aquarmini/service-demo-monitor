@@ -7,6 +7,7 @@ use App\Thrift\Services\AppHandler;
 use App\Thrift\Services\GithubHandler;
 use App\Utils\Log;
 use App\Utils\Redis;
+use Xin\Phalcon\Logger\Sys;
 use Xin\Thrift\GithubService\GithubProcessor;
 use Xin\Thrift\MicroService\AppProcessor;
 use swoole_server;
@@ -49,7 +50,8 @@ class ServiceTask extends Socket
             if (!$client->connect(env('REGISTRY_IP'), env('REGISTRY_PORT'), -1)) {
                 exit("connect failed. Error: {$client->errCode}\n");
             }
-            swoole_timer_tick(5000, function () use ($client) {
+            $logger = di('logger')->getLogger('heart', Sys::LOG_ADAPTER_FILE, ['dir' => 'system']);
+            swoole_timer_tick(5000, function () use ($client, $logger) {
                 $service = env('REGISTRY_SERVICE', 'github');
                 $data = [
                     'service' => $service,
@@ -62,7 +64,7 @@ class ServiceTask extends Socket
 
                 $client->send(json_encode($data));
                 $result = $client->recv();
-                Log::info($result);
+                $logger->info($result);
 
                 $result = json_decode($result, true);
                 if ($result['success']) {
