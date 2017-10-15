@@ -1,6 +1,7 @@
 namespace php Xin.Thrift.MonitorService
 
 include "github/commits.thrift"
+include "github/tieba.thrift"
 
 service Github {
     // 触发消息队列 收到的公共事件订阅信息

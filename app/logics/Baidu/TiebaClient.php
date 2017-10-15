@@ -74,5 +74,13 @@ class TiebaClient extends Base
 
         return true;
     }
+
+    public static function tiebas($bdUss, $nickName)
+    {
+        $client = static::getInstance($bdUss, $nickName);
+        $tiebas = $client->user->flushTiebas();
+        
+        return $tiebas;
+    }
 }
 
