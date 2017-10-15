@@ -62,4 +62,23 @@ class BaiduProcessor {
       $output->getTransport()->flush();
     }
   }
+  protected function process_myTiebas($seqid, $input, $output) {
+    $args = new \Xin\Thrift\MonitorService\Baidu_myTiebas_args();
+    $args->read($input);
+    $input->readMessageEnd();
+    $result = new \Xin\Thrift\MonitorService\Baidu_myTiebas_result();
+    $result->success = $this->handler_->myTiebas($args->bdUss, $args->nickName);
+    $bin_accel = ($output instanceof TBinaryProtocolAccelerated) && function_exists('thrift_protocol_write_binary');
+    if ($bin_accel)
+    {
+      thrift_protocol_write_binary($output, 'myTiebas', TMessageType::REPLY, $result, $seqid, $output->isStrictWrite());
+    }
+    else
+    {
+      $output->writeMessageBegin('myTiebas', TMessageType::REPLY, $seqid);
+      $result->write($output);
+      $output->writeMessageEnd();
+      $output->getTransport()->flush();
+    }
+  }
 }

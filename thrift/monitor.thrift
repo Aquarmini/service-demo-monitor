@@ -1,7 +1,7 @@
 namespace php Xin.Thrift.MonitorService
 
 include "github/commits.thrift"
-include "github/tieba.thrift"
+include "baidu/tieba.thrift"
 
 service Github {
     // 触发消息队列 收到的公共事件订阅信息
@@ -17,4 +17,7 @@ service Github {
 service Baidu {
     // 贴吧签到
     bool tiebaSign(string bdUss, string nickName)
+
+    // 获取我的贴吧列表
+    list<tieba.BaiduTieba> myTiebas(string bdUss, string nickName)
 }

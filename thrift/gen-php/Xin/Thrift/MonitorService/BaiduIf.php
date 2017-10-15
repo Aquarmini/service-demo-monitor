@@ -23,6 +23,12 @@ interface BaiduIf {
    * @return bool
    */
   public function tiebaSign($bdUss, $nickName);
+  /**
+   * @param string $bdUss
+   * @param string $nickName
+   * @return \Xin\Thrift\MonitorService\BaiduTieba[]
+   */
+  public function myTiebas($bdUss, $nickName);
 }
 
 
