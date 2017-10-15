@@ -44,4 +44,8 @@ class BaiduHandler extends Handler implements BaiduIf
         return $result;
     }
 
+    public function tieba($bdUss, $nickName, $name)
+    {
+        return new BaiduTieba();
+    }
 }

@@ -20,4 +20,7 @@ service Baidu {
 
     // 获取我的贴吧列表
     list<tieba.BaiduTieba> myTiebas(string bdUss, string nickName)
+
+    // 获取我的某个贴吧
+    tieba.BaiduTieba tieba(string bdUss, string nickName, string name)
 }

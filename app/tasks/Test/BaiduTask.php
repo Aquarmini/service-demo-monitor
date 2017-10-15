@@ -20,7 +20,7 @@ class BaiduTask extends Task
 
     public function tiebasAction()
     {
-        $client = BaiduClient::getInstance(['port' => 52100]);
+        $client = BaiduClient::getInstance(['host' => 'my.server.host', 'port' => 52100]);
         $res = $client->myTiebas(env('BAIDU_USS'), '桃园丶龙玉箫');
         dump($res);
     }

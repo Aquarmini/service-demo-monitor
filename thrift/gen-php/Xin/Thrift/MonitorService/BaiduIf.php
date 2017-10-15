@@ -29,6 +29,13 @@ interface BaiduIf {
    * @return \Xin\Thrift\MonitorService\BaiduTieba[]
    */
   public function myTiebas($bdUss, $nickName);
+  /**
+   * @param string $bdUss
+   * @param string $nickName
+   * @param string $name
+   * @return \Xin\Thrift\MonitorService\BaiduTieba
+   */
+  public function tieba($bdUss, $nickName, $name);
 }
 
 
