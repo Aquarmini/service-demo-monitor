@@ -46,6 +46,24 @@ class BaiduHandler extends Handler implements BaiduIf
 
     public function tieba($bdUss, $nickName, $name)
     {
-        return new BaiduTieba();
+        $tieba = \App\Models\BaiduTieba::findFirst([
+            'conditions' => 'nickname=?0 AND name=?1',
+            'bind' => [$nickName, $name]
+        ]);
+
+        $result = new BaiduTieba();
+
+        $result->id = $tieba->id;
+        $result->nickname = $tieba->nickname;
+        $result->fid = $tieba->fid;
+        $result->slogan = $tieba->slogan;
+        $result->avatar = $tieba->avatar;
+        $result->name = $tieba->name;
+        $result->levelupScore = $tieba->levelup_score;
+        $result->levelId = $tieba->level_id;
+        $result->levelName = $tieba->level_name;
+        $result->curScore = $tieba->cur_score;
+
+        return $result;
     }
 }
