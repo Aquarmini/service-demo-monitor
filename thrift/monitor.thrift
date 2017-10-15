@@ -12,3 +12,8 @@ service Github {
     // 显示时间段内，commits变化
     list<commits.CommitsLog> commitsLog(string committer, i32 btime, i32 etime)
 }
+
+service Baidu {
+    // 贴吧签到
+    bool tiebaSign(string bdUss, string nickName)
+}
