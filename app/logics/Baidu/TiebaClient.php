@@ -36,7 +36,7 @@ class TiebaClient extends Base
         $tiebas = $client->user->flushTiebas();
         $redis_key = 'tieba:sign:' . date('Ymd');
         $message = '';
-        $length = 50; // 一次签到贴吧数
+        // $length = 50; // 一次签到贴吧数
         foreach ($tiebas as $tieba) {
             Log::info("贴吧：{$tieba->tieba->name}");
             if (!Redis::sismember($redis_key, $tieba->tieba->fid)) {
@@ -48,10 +48,6 @@ class TiebaClient extends Base
                     Redis::sadd($redis_key, $tieba->tieba->fid);
                 } else {
                     $message .= " 签到失败！\n\n";
-                }
-
-                if (--$length <= 0) {
-                    break;
                 }
             }
         }
