@@ -8,7 +8,7 @@ service Github {
 
     // 触发消息队列 查看当前的commits数
     bool commits(string committer, string token)
-    
+
     // 显示时间段内，commits变化
     list<commits.CommitsLog> commitsLog(string committer, i32 btime, i32 etime)
 }
