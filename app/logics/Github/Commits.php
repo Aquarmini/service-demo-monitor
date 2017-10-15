@@ -22,7 +22,7 @@ class Commits extends Base
         ]);
         $result = [];
         foreach ($res as $item) {
-            $obj = new \Xin\Thrift\MonitorService\CommitsLog();
+            $obj = new \Xin\Thrift\MonitorService\Co();
             $obj->id = $item->id;
             $obj->username = $item->username;
             $obj->commits = $item->commits;

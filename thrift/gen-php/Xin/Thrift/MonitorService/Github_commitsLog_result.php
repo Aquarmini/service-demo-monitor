@@ -20,7 +20,7 @@ class Github_commitsLog_result {
   static $_TSPEC;
 
   /**
-   * @var \Xin\Thrift\GithubService\CommitsLog[]
+   * @var \Xin\Thrift\MonitorService\CommitsLog[]
    */
   public $success = null;
 
@@ -33,7 +33,7 @@ class Github_commitsLog_result {
           'etype' => TType::STRUCT,
           'elem' => array(
             'type' => TType::STRUCT,
-            'class' => '\Xin\Thrift\GithubService\CommitsLog',
+            'class' => '\Xin\Thrift\MonitorService\CommitsLog',
             ),
           ),
         );
@@ -73,7 +73,7 @@ class Github_commitsLog_result {
             for ($_i4 = 0; $_i4 < $_size0; ++$_i4)
             {
               $elem5 = null;
-              $elem5 = new \Xin\Thrift\GithubService\CommitsLog();
+              $elem5 = new \Xin\Thrift\MonitorService\CommitsLog();
               $xfer += $elem5->read($input);
               $this->success []= $elem5;
             }

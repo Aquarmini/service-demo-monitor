@@ -1,4 +1,4 @@
-namespace php Xin.Thrift.GithubService
+namespace php Xin.Thrift.MonitorService
 
 struct CommitsLog {
     1: i64 id,

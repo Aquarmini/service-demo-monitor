@@ -32,7 +32,7 @@ interface GithubIf {
    * @param string $committer
    * @param int $btime
    * @param int $etime
-   * @return \Xin\Thrift\GithubService\CommitsLog[]
+   * @return \Xin\Thrift\MonitorService\CommitsLog[]
    */
   public function commitsLog($committer, $btime, $etime);
 }
