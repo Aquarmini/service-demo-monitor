@@ -2,10 +2,13 @@
 
 namespace App\Tasks\Test;
 
+use App\Jobs\GithubReceivedEventJob;
 use App\Logics\Github\Events;
 use App\Logics\Github\Commits;
+use App\Logics\Github\Follow;
 use App\Tasks\Task;
 use App\Thrift\Clients\GithubClient;
+use App\Utils\Queue;
 use App\Utils\Redis;
 
 class GithubTask extends Task
@@ -58,6 +61,15 @@ class GithubTask extends Task
         $token = env('RECEIVED_EVENTS_TOKEN');
         $committer = 'limingxinleo';
         $res = Events::sendReceivedEvent($committer, $token);
+        dd($res);
+    }
+
+    public function followersAction()
+    {
+        $token = env('RECEIVED_EVENTS_TOKEN');
+        $committer = 'limingxinleo';
+        // $res = Follow::followers($committer, $token);
+        $res = Follow::getFollowers($committer)->toArray();
         dd($res);
     }
 
