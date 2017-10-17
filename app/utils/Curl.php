@@ -56,7 +56,7 @@ class Curl
 
         $url = $url . $api . '?' . $body;
 
-        Log::info('CURL:' . $url);
+        // Log::info('CURL:' . $url);
 
         $ch = curl_init();
         // 设置抓取的url
