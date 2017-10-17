@@ -18,10 +18,11 @@ use Thrift\Exception\TApplicationException;
 
 interface GithubIf {
   /**
+   * @param string $username
    * @param string $token
    * @return bool
    */
-  public function receivedEvents($token);
+  public function receivedEvents($username, $token);
   /**
    * @param string $committer
    * @param string $token

@@ -27,15 +27,16 @@ class GithubClient implements \Xin\Thrift\MonitorService\GithubIf {
     $this->output_ = $output ? $output : $input;
   }
 
-  public function receivedEvents($token)
+  public function receivedEvents($username, $token)
   {
-    $this->send_receivedEvents($token);
+    $this->send_receivedEvents($username, $token);
     return $this->recv_receivedEvents();
   }
 
-  public function send_receivedEvents($token)
+  public function send_receivedEvents($username, $token)
   {
     $args = new \Xin\Thrift\MonitorService\Github_receivedEvents_args();
+    $args->username = $username;
     $args->token = $token;
     $bin_accel = ($this->output_ instanceof TBinaryProtocolAccelerated) && function_exists('thrift_protocol_write_binary');
     if ($bin_accel)

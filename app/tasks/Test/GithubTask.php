@@ -56,7 +56,8 @@ class GithubTask extends Task
     public function receivedAction()
     {
         $token = env('RECEIVED_EVENTS_TOKEN');
-        $res = Events::sendReceivedEvent($token);
+        $committer = 'limingxinleo';
+        $res = Events::sendReceivedEvent($committer, $token);
         dd($res);
     }
 

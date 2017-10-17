@@ -13,10 +13,12 @@ class GithubReceivedEventJob implements JobInterface
 
     public $token;
 
-    public function __construct($token)
+    public $username;
+
+    public function __construct($username, $token)
     {
         $this->token = $token;
-
+        $this->username = $username;
     }
 
     public function handle()

@@ -16,9 +16,9 @@ use Xin\Thrift\MonitorService\GithubIf;
 
 class GithubHandler extends Handler implements GithubIf
 {
-    public function receivedEvents($token)
+    public function receivedEvents($username, $token)
     {
-        Queue::push(new GithubReceivedEventJob($token));
+        Queue::push(new GithubReceivedEventJob($username, $token));
         return true;
     }
 

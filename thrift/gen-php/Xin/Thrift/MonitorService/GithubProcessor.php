@@ -48,7 +48,7 @@ class GithubProcessor {
     $args->read($input);
     $input->readMessageEnd();
     $result = new \Xin\Thrift\MonitorService\Github_receivedEvents_result();
-    $result->success = $this->handler_->receivedEvents($args->token);
+    $result->success = $this->handler_->receivedEvents($args->username, $args->token);
     $bin_accel = ($output instanceof TBinaryProtocolAccelerated) && function_exists('thrift_protocol_write_binary');
     if ($bin_accel)
     {

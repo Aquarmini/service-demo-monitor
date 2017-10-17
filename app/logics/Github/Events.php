@@ -9,9 +9,9 @@ use App\Utils\Redis;
 
 class Events extends Base
 {
-    public static function received($token)
+    public static function received($username, $token)
     {
-        $api = '/users/limingxinleo/received_events/public';
+        $api = "/users/{$username}/received_events/public";
         $data = [
             'page' => 1,
             'per_page' => 5,
@@ -20,10 +20,10 @@ class Events extends Base
         return Curl::httpGet($api, $data, $token);
     }
 
-    public static function sendReceivedEvent($token)
+    public static function sendReceivedEvent($username, $token)
     {
         $redis_key = 'github:received:events:%s';
-        $res = static::received($token);
+        $res = static::received($username, $token);
         foreach ($res as $item) {
             $id = $item['id'];
             Log::info('receivedEvents:id=' . $id);
