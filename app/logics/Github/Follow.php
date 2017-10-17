@@ -5,6 +5,7 @@ namespace App\Logics\Github;
 use App\Logics\Base;
 use App\Models\Followers;
 use App\Utils\Curl;
+use App\Utils\Log;
 
 class Follow extends Base
 {
@@ -23,6 +24,7 @@ class Follow extends Base
 
         $res = Curl::httpGet($api, $data);
         foreach ($res as $item) {
+            Log::info('followers:' . $item['login']);
             $user = Followers::findFirst([
                 'conditions' => 'username = ?0 AND  login = ?1',
                 'bind' => [$username, $item['login']],
