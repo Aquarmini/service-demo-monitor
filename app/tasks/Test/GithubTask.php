@@ -2,6 +2,7 @@
 
 namespace App\Tasks\Test;
 
+use App\Logics\Github\Events;
 use App\Logics\Github\Commits;
 use App\Tasks\Task;
 use App\Thrift\Clients\GithubClient;
@@ -49,6 +50,13 @@ class GithubTask extends Task
         $committer = 'limingxinleo';
         $token = env('RECEIVED_EVENTS_TOKEN');
         $res = Commits::send($committer, $token);
+        dd($res);
+    }
+
+    public function receivedAction()
+    {
+        $token = env('RECEIVED_EVENTS_TOKEN');
+        $res = Events::sendReceivedEvent($token);
         dd($res);
     }
 
