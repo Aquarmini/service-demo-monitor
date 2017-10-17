@@ -8,6 +8,8 @@
 // +----------------------------------------------------------------------
 namespace App\Utils;
 
+use App\Core\Exception\HttpException;
+
 class Curl
 {
     public static function json($url, $params)
