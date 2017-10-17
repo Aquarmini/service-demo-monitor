@@ -13,12 +13,12 @@ class Follow extends Base
      * @author limx
      * @param $token
      */
-    public static function followers($username, $token)
+    public static function followers($username)
     {
         $api = "/users/{$username}/followers";
         $data = [];
 
-        $res = Curl::httpGet($api, $data, $token);
+        $res = Curl::httpGet($api, $data);
         foreach ($res as $item) {
             $user = Followers::findFirst([
                 'conditions' => 'username = ?0 AND  login = ?1',

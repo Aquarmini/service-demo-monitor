@@ -48,7 +48,7 @@ class Curl
         return json_decode($result, true);
     }
 
-    public static function httpGet($api, $params, $token)
+    public static function httpGet($api, $params, $token = null)
     {
         $url = 'https://api.github.com';
 
@@ -69,11 +69,14 @@ class Curl
         curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
 
         // 设置JSON HEADER
-        curl_setopt($ch, CURLOPT_HTTPHEADER, [
-            "Authorization: token {$token}",
+        $headers = [
             "User-Agent: DingTalk Github App",
-            "Accept: application/vnd.github.cloak-preview",
-        ]);
+            "Accept: application/vnd.github.cloak-preview"
+        ];
+        if (isset($token)) {
+            $headers[] = "Authorization: token {$token}";
+        }
+        curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
 
         //执行命令
         $result = curl_exec($ch);

@@ -66,10 +66,9 @@ class GithubTask extends Task
 
     public function followersAction()
     {
-        $token = env('RECEIVED_EVENTS_TOKEN');
         $committer = 'limingxinleo';
-        // $res = Follow::followers($committer, $token);
-        $res = Follow::getFollowers($committer)->toArray();
+        $res = Follow::followers($committer);
+        // $res = Follow::getFollowers($committer)->toArray();
         dd($res);
     }
 
