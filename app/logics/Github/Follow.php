@@ -13,10 +13,13 @@ class Follow extends Base
      * @author limx
      * @param $token
      */
-    public static function followers($username)
+    public static function followers($username, $page = 1, $per_page = 20)
     {
         $api = "/users/{$username}/followers";
-        $data = [];
+        $data = [
+            'page' => $page,
+            'per_page' => $per_page,
+        ];
 
         $res = Curl::httpGet($api, $data);
         foreach ($res as $item) {

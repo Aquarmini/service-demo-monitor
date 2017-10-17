@@ -66,7 +66,7 @@ class GithubTask extends Task
 
     public function followersAction()
     {
-        $committer = 'limingxinleo';
+        $committer = 'laruence';
         $res = Follow::followers($committer);
         // $res = Follow::getFollowers($committer)->toArray();
         dd($res);

@@ -17,7 +17,15 @@ class GithubFollowersJob implements JobInterface
 
     public function handle()
     {
-        Follow::followers($this->username);
+        $continue = true;
+        $page = 1;
+        while ($continue) {
+            $res = Follow::followers($this->username, $page);
+            if (count($res) == 0) {
+                $continue = false;
+            }
+            $page++;
+        }
     }
 }
 
