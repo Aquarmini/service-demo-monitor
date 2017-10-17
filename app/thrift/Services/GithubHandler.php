@@ -9,6 +9,7 @@
 namespace App\Thrift\Services;
 
 use App\Jobs\GithubCommitsJob;
+use App\Jobs\GithubFollowersJob;
 use App\Jobs\GithubReceivedEventJob;
 use App\Logics\Github\Commits;
 use App\Utils\Log;
@@ -36,4 +37,12 @@ class GithubHandler extends Handler implements GithubIf
         $etime = date('Y-m-d H:i:s', $etime);
         return Commits::getCommitsLogs($committer, $btime, $etime);
     }
+
+    public function updateFollowers($username)
+    {
+        Queue::push(new GithubFollowersJob($username));
+        return true;
+    }
+
+
 }

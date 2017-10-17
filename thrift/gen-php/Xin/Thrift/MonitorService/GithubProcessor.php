@@ -81,6 +81,25 @@ class GithubProcessor {
       $output->getTransport()->flush();
     }
   }
+  protected function process_updateFollowers($seqid, $input, $output) {
+    $args = new \Xin\Thrift\MonitorService\Github_updateFollowers_args();
+    $args->read($input);
+    $input->readMessageEnd();
+    $result = new \Xin\Thrift\MonitorService\Github_updateFollowers_result();
+    $result->success = $this->handler_->updateFollowers($args->username);
+    $bin_accel = ($output instanceof TBinaryProtocolAccelerated) && function_exists('thrift_protocol_write_binary');
+    if ($bin_accel)
+    {
+      thrift_protocol_write_binary($output, 'updateFollowers', TMessageType::REPLY, $result, $seqid, $output->isStrictWrite());
+    }
+    else
+    {
+      $output->writeMessageBegin('updateFollowers', TMessageType::REPLY, $seqid);
+      $result->write($output);
+      $output->writeMessageEnd();
+      $output->getTransport()->flush();
+    }
+  }
   protected function process_commitsLog($seqid, $input, $output) {
     $args = new \Xin\Thrift\MonitorService\Github_commitsLog_args();
     $args->read($input);
