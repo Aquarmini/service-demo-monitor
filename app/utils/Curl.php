@@ -52,9 +52,13 @@ class Curl
 
         $body = http_build_query($params);
 
+        $url = $url . $api . '?' . $body;
+
+        Log::info('CURL:' . $url);
+
         $ch = curl_init();
         // 设置抓取的url
-        curl_setopt($ch, CURLOPT_URL, $url . $api . '?' . $body);
+        curl_setopt($ch, CURLOPT_URL, $url);
         // 启用时会将头文件的信息作为数据流输出。
         curl_setopt($ch, CURLOPT_HEADER, false);
         // 启用时将获取的信息以文件流的形式返回，而不是直接输出。

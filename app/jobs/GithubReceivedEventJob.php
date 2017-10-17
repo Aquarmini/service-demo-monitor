@@ -25,7 +25,7 @@ class GithubReceivedEventJob implements JobInterface
     {
         $token = $this->token;
         $username = $this->username;
-        
+
         return Events::sendReceivedEvent($username, $token);
     }
 
