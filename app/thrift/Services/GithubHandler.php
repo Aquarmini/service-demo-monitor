@@ -11,6 +11,7 @@ namespace App\Thrift\Services;
 use App\Jobs\GithubCommitsJob;
 use App\Jobs\GithubReceivedEventJob;
 use App\Logics\Github\Commits;
+use App\Utils\Log;
 use App\Utils\Queue;
 use Xin\Thrift\MonitorService\GithubIf;
 
@@ -18,6 +19,7 @@ class GithubHandler extends Handler implements GithubIf
 {
     public function receivedEvents($username, $token)
     {
+        Log::info("receivedEvents:" . $username . ":" . $token);
         Queue::push(new GithubReceivedEventJob($username, $token));
         return true;
     }
