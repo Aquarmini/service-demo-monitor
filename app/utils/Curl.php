@@ -9,6 +9,7 @@
 namespace App\Utils;
 
 use App\Core\Exception\HttpException;
+use Xin\Phalcon\Logger\Factory;
 
 class Curl
 {
@@ -56,7 +57,11 @@ class Curl
 
         $url = $url . $api . '?' . $body;
 
-        // Log::info('CURL:' . $url);
+        /** @var Factory $facotry */
+        $facotry = di('logger');
+        /** @var \Phalcon\Logger\AdapterInterface $logger */
+        $logger = $facotry->getLogger('http');
+        $logger->debug('CURL:' . $url);
 
         $ch = curl_init();
         // 设置抓取的url
