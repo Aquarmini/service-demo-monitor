@@ -16,6 +16,9 @@ service Github {
     // 更新某人的关注列表
     bool updateFollowing(string username, string token)
 
+    // 触发消息 查看某人关注列表今日的commits数
+    bool followingCommits(string username, string token)
+
     // 显示时间段内，commits变化
     list<commits.CommitsLog> commitsLog(string committer, i32 btime, i32 etime)
 }
