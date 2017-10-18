@@ -24,6 +24,8 @@ class GithubFollowingJob implements JobInterface
 
         $redis_key = "following:" . $this->username;
         $page = Redis::get($redis_key) ?? 1;
+        $page = intval($page);
+        if ($page <= 0) $page = 1;
         while ($continue) {
             $res = Follow::following($this->username, $page, 20, $this->token);
             if (count($res) == 0) {
