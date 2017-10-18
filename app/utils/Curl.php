@@ -59,7 +59,6 @@ class Curl
 
         /** @var Factory $facotry */
         $facotry = di('logger');
-        /** @var \Phalcon\Logger\AdapterInterface $logger */
         $logger = $facotry->getLogger('http');
         $logger->debug('CURL:' . $url);
 

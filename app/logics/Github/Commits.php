@@ -66,10 +66,12 @@ class Commits extends Base
     public static function count($committer, $date, $token)
     {
         $res = static::search($committer, $date, $token);
-        if (!isset($res['total_count'])) {
-            return 0;
+        $count = 0;
+        if (isset($res['total_count'])) {
+            $count = $res['total_count'];
         }
-        return $res['total_count'];
+        Log::info('commits:committer=' . $committer . ',count=' . $count);
+        return $count;
     }
 
     /**
@@ -78,7 +80,6 @@ class Commits extends Base
      */
     public static function send($committer, $token)
     {
-        Log::info('commits:committer=' . $committer);
 
         $date = date('Y-m-d', time() - 8 * 3600);
         $redis_key = sprintf('github:commits:count:%s:%s', $committer, $date);
@@ -92,7 +93,7 @@ class Commits extends Base
         }
 
         // 检测到commits有所增加 发送钉钉消息
-        Log::info('commits:committer=' . $committer . ',count=' . $count);
+        Log::info('commits:committer=' . $committer . ',count=' . $current_count . '->' . $count);
         $now = date('Y-m-d H:i:s');
         $params = [
             "msgtype" => "markdown",
