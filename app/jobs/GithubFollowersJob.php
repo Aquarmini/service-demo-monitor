@@ -4,6 +4,7 @@ namespace App\Jobs;
 
 use App\Jobs\Contract\JobInterface;
 use App\Logics\Github\Follow;
+use App\Utils\Redis;
 
 class GithubFollowersJob implements JobInterface
 {
@@ -20,13 +21,16 @@ class GithubFollowersJob implements JobInterface
     public function handle()
     {
         $continue = true;
-        $page = 1;
+        $redis_key = "followers:" . $this->username;
+        $page = Redis::get($redis_key) ?? 1;
         while ($continue) {
             $res = Follow::followers($this->username, $page, 20, $this->token);
             if (count($res) == 0) {
+                Redis::del($redis_key);
                 $continue = false;
             }
             $page++;
+            Redis::set($redis_key, $page);
         }
     }
 }
