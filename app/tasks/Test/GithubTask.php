@@ -72,5 +72,14 @@ class GithubTask extends Task
         dd($res);
     }
 
+
+    public function followingAction()
+    {
+        $committer = 'limingxinleo';
+        $res = Follow::following($committer);
+        // $res = Follow::getFollowers($committer)->toArray();
+        dd($res);
+    }
+
 }
 

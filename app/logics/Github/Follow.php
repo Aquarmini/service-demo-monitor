@@ -54,9 +54,31 @@ class Follow extends Base
      * @author limx
      * @param $token
      */
-    public static function following($token)
+    public static function following($username, $page = 1, $per_page = 20, $token = null)
     {
+        $api = "/users/{$username}/following";
+        $data = [
+            'page' => $page,
+            'per_page' => $per_page,
+        ];
 
+        $res = Curl::httpGet($api, $data, $token);
+        foreach ($res as $item) {
+            Log::info('followers:' . $item['login']);
+            $user = Followers::findFirst([
+                'conditions' => 'username = ?0 AND  login = ?1',
+                'bind' => [$item['login'], $username],
+            ]);
+            if (empty($user)) {
+                $user = new Followers();
+                $user->username = $item['login'];
+                $user->uid = $item['id'];
+                $user->avatar_url = $item['avatar_url'];
+                $user->login = $username;
+                $user->save();
+            }
+        }
+        return $res;
     }
 }
 

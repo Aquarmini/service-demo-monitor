@@ -4,9 +4,6 @@ namespace App\Jobs;
 
 use App\Jobs\Contract\JobInterface;
 use App\Logics\Github\Events;
-use App\Utils\Curl;
-use App\Utils\Log;
-use App\Utils\Redis;
 
 class GithubReceivedEventJob implements JobInterface
 {
@@ -25,7 +22,6 @@ class GithubReceivedEventJob implements JobInterface
     {
         $token = $this->token;
         $username = $this->username;
-        // Log::info("GithubReceivedEventJob:handle:" . $username . ":" . $token);
 
         return Events::sendReceivedEvent($username, $token);
     }

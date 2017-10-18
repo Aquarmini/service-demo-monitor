@@ -10,6 +10,7 @@ namespace App\Thrift\Services;
 
 use App\Jobs\GithubCommitsJob;
 use App\Jobs\GithubFollowersJob;
+use App\Jobs\GithubFollowingJob;
 use App\Jobs\GithubReceivedEventJob;
 use App\Logics\Github\Commits;
 use App\Utils\Log;
@@ -44,5 +45,10 @@ class GithubHandler extends Handler implements GithubIf
         return true;
     }
 
+    public function updateFollowing($username, $token)
+    {
+        Queue::push(new GithubFollowingJob($username, $token));
+        return true;
+    }
 
 }
