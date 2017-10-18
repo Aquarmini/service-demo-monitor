@@ -131,16 +131,17 @@ class GithubClient implements \Xin\Thrift\MonitorService\GithubIf {
     throw new \Exception("commits failed: unknown result");
   }
 
-  public function updateFollowers($username)
+  public function updateFollowers($username, $token)
   {
-    $this->send_updateFollowers($username);
+    $this->send_updateFollowers($username, $token);
     return $this->recv_updateFollowers();
   }
 
-  public function send_updateFollowers($username)
+  public function send_updateFollowers($username, $token)
   {
     $args = new \Xin\Thrift\MonitorService\Github_updateFollowers_args();
     $args->username = $username;
+    $args->token = $token;
     $bin_accel = ($this->output_ instanceof TBinaryProtocolAccelerated) && function_exists('thrift_protocol_write_binary');
     if ($bin_accel)
     {

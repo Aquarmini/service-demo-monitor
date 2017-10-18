@@ -38,9 +38,9 @@ class GithubHandler extends Handler implements GithubIf
         return Commits::getCommitsLogs($committer, $btime, $etime);
     }
 
-    public function updateFollowers($username)
+    public function updateFollowers($username, $token)
     {
-        Queue::push(new GithubFollowersJob($username));
+        Queue::push(new GithubFollowersJob($username, $token));
         return true;
     }
 

@@ -31,9 +31,10 @@ interface GithubIf {
   public function commits($committer, $token);
   /**
    * @param string $username
+   * @param string $token
    * @return bool
    */
-  public function updateFollowers($username);
+  public function updateFollowers($username, $token);
   /**
    * @param string $committer
    * @param int $btime

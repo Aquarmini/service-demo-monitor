@@ -14,7 +14,7 @@ class Follow extends Base
      * @author limx
      * @param $token
      */
-    public static function followers($username, $page = 1, $per_page = 20)
+    public static function followers($username, $page = 1, $per_page = 20, $token = null)
     {
         $api = "/users/{$username}/followers";
         $data = [
@@ -22,7 +22,7 @@ class Follow extends Base
             'per_page' => $per_page,
         ];
 
-        $res = Curl::httpGet($api, $data);
+        $res = Curl::httpGet($api, $data, $token);
         foreach ($res as $item) {
             Log::info('followers:' . $item['login']);
             $user = Followers::findFirst([

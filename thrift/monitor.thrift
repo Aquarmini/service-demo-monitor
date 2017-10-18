@@ -11,7 +11,7 @@ service Github {
     bool commits(string committer, string token)
 
     // 更新某人的粉丝列表
-    bool updateFollowers(string username)
+    bool updateFollowers(string username, string token)
 
     // 显示时间段内，commits变化
     list<commits.CommitsLog> commitsLog(string committer, i32 btime, i32 etime)

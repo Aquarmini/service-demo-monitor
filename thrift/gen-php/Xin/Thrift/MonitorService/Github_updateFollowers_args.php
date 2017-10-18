@@ -23,6 +23,10 @@ class Github_updateFollowers_args {
    * @var string
    */
   public $username = null;
+  /**
+   * @var string
+   */
+  public $token = null;
 
   public function __construct($vals=null) {
     if (!isset(self::$_TSPEC)) {
@@ -31,11 +35,18 @@ class Github_updateFollowers_args {
           'var' => 'username',
           'type' => TType::STRING,
           ),
+        -2 => array(
+          'var' => 'token',
+          'type' => TType::STRING,
+          ),
         );
     }
     if (is_array($vals)) {
       if (isset($vals['username'])) {
         $this->username = $vals['username'];
+      }
+      if (isset($vals['token'])) {
+        $this->token = $vals['token'];
       }
     }
   }
@@ -66,6 +77,13 @@ class Github_updateFollowers_args {
             $xfer += $input->skip($ftype);
           }
           break;
+        case -2:
+          if ($ftype == TType::STRING) {
+            $xfer += $input->readString($this->token);
+          } else {
+            $xfer += $input->skip($ftype);
+          }
+          break;
         default:
           $xfer += $input->skip($ftype);
           break;
@@ -79,6 +97,11 @@ class Github_updateFollowers_args {
   public function write($output) {
     $xfer = 0;
     $xfer += $output->writeStructBegin('Github_updateFollowers_args');
+    if ($this->token !== null) {
+      $xfer += $output->writeFieldBegin('token', TType::STRING, -2);
+      $xfer += $output->writeString($this->token);
+      $xfer += $output->writeFieldEnd();
+    }
     if ($this->username !== null) {
       $xfer += $output->writeFieldBegin('username', TType::STRING, -1);
       $xfer += $output->writeString($this->username);

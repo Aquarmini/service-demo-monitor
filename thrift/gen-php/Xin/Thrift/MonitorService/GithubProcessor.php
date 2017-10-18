@@ -86,7 +86,7 @@ class GithubProcessor {
     $args->read($input);
     $input->readMessageEnd();
     $result = new \Xin\Thrift\MonitorService\Github_updateFollowers_result();
-    $result->success = $this->handler_->updateFollowers($args->username);
+    $result->success = $this->handler_->updateFollowers($args->username, $args->token);
     $bin_accel = ($output instanceof TBinaryProtocolAccelerated) && function_exists('thrift_protocol_write_binary');
     if ($bin_accel)
     {
