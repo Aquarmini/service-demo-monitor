@@ -30,7 +30,7 @@ class GithubFollowingJob implements JobInterface
             $res = Follow::following($this->username, $page, 20, $this->token);
             if (count($res) == 0) {
                 Redis::del($redis_key);
-                $continue = false;
+                break;
             }
             $page++;
             Redis::set($redis_key, $page);
