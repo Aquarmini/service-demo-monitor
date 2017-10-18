@@ -138,7 +138,7 @@ class Commits extends Base
             $redis_key = sprintf('github:commits:count:%s:%s', $committer->username, $date);
             $current_count = Redis::get($redis_key) ?? 0;
             $current_count = intval($current_count);
-            $count = static::count($username, $date, $token);
+            $count = static::count($committer->username, $date, $token);
             if ($count <= $current_count) {
                 continue;
             }
