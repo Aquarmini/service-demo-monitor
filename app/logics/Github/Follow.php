@@ -24,6 +24,10 @@ class Follow extends Base
 
         $res = Curl::httpGet($api, $data, $token);
         foreach ($res as $item) {
+            if (!isset($item['login'])) {
+                // 找不到我关注的人
+                return [];
+            }
             Log::info('followers:' . $item['login']);
             $user = Followers::findFirst([
                 'conditions' => 'username = ?0 AND  login = ?1',
@@ -64,7 +68,11 @@ class Follow extends Base
 
         $res = Curl::httpGet($api, $data, $token);
         foreach ($res as $item) {
-            Log::info('followers:' . $item['login']);
+            if (!isset($item['login'])) {
+                // 找不到关注我的人
+                return [];
+            }
+            Log::info('following:' . $item['login']);
             $user = Followers::findFirst([
                 'conditions' => 'username = ?0 AND  login = ?1',
                 'bind' => [$item['login'], $username],
