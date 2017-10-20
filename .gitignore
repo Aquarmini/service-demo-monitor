@@ -13,6 +13,5 @@ data
 public/dist/
 node_modules/
 package-lock.json
-socket.pid
-service.pid
 config.ini
+*.pid
