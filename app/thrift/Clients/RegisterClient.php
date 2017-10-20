@@ -15,7 +15,7 @@ class RegisterClient extends Client
 
     protected $clientName = RegisterServiceClient::class;
 
-    protected $recvTimeoutMilliseconds = 10;
+    protected $recvTimeoutMilliseconds = 50;
 
     protected $sendTimeoutMilliseconds;
 
