@@ -90,7 +90,7 @@ class ServiceTask extends Socket
                     $logger->error("服务列表为空！");
                     return;
                 }
-                
+
                 foreach ($result->services as $key => $item) {
                     $serviceJson = json_encode(Sign::serviceInfoToArray($item));
                     $logger->info($serviceJson);
@@ -111,9 +111,6 @@ class ServiceTask extends Socket
     {
         parent::beforeServerStart($server);
 
-        static::registryHeartbeat($server, 'github');
-        static::registryHeartbeat($server, 'baidu');
-        
         if ($this->option('daemonize')) {
             $this->config['daemonize'] = true;
         }
@@ -122,7 +119,9 @@ class ServiceTask extends Socket
         $server->set($this->config);
 
         if (env('REGISTER_CENTER_OPEN', false)) {
-            $this->registryHeartbeat($server, 'app');
+            static::registryHeartbeat($server, 'github');
+            static::registryHeartbeat($server, 'baidu');
+            // $this->registryHeartbeat($server, 'app');
         }
     }
 
