@@ -14,8 +14,10 @@ use App\Jobs\GithubFollowingCommitsJob;
 use App\Jobs\GithubFollowingJob;
 use App\Jobs\GithubReceivedEventJob;
 use App\Logics\Github\Commits;
-use App\Utils\Log;
+use App\Logics\Github\User;
+use Xin\Thrift\MonitorService\UserProfile;
 use App\Utils\Queue;
+use App\Utils\Redis;
 use Xin\Thrift\MonitorService\GithubIf;
 
 class GithubHandler extends Handler implements GithubIf
@@ -58,5 +60,24 @@ class GithubHandler extends Handler implements GithubIf
         return true;
     }
 
+    public function userProfile($username, $token)
+    {
+        if (empty($username)) {
+            return null;
+        }
+
+        $redis_key = 'monitor:github:user:' . $username;
+        if ($user = Redis::get($redis_key)) {
+            return unserialize($user);
+        }
+
+        $user = User::profile($username, $token);
+        $profile = new UserProfile($user);
+
+        Redis::set($redis_key, serialize($profile));
+        Redis::expire($redis_key, 3600);
+
+        return $profile;
+    }
 
 }

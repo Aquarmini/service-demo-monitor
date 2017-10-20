@@ -157,4 +157,23 @@ class GithubProcessor {
       $output->getTransport()->flush();
     }
   }
+  protected function process_userProfile($seqid, $input, $output) {
+    $args = new \Xin\Thrift\MonitorService\Github_userProfile_args();
+    $args->read($input);
+    $input->readMessageEnd();
+    $result = new \Xin\Thrift\MonitorService\Github_userProfile_result();
+    $result->success = $this->handler_->userProfile($args->username, $args->token);
+    $bin_accel = ($output instanceof TBinaryProtocolAccelerated) && function_exists('thrift_protocol_write_binary');
+    if ($bin_accel)
+    {
+      thrift_protocol_write_binary($output, 'userProfile', TMessageType::REPLY, $result, $seqid, $output->isStrictWrite());
+    }
+    else
+    {
+      $output->writeMessageBegin('userProfile', TMessageType::REPLY, $seqid);
+      $result->write($output);
+      $output->writeMessageEnd();
+      $output->getTransport()->flush();
+    }
+  }
 }

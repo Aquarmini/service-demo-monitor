@@ -54,6 +54,12 @@ interface GithubIf {
    * @return \Xin\Thrift\MonitorService\CommitsLog[]
    */
   public function commitsLog($committer, $btime, $etime);
+  /**
+   * @param string $username
+   * @param string $token
+   * @return \Xin\Thrift\MonitorService\UserProfile
+   */
+  public function userProfile($username, $token);
 }
 
 

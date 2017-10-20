@@ -6,6 +6,7 @@ use App\Jobs\GithubReceivedEventJob;
 use App\Logics\Github\Events;
 use App\Logics\Github\Commits;
 use App\Logics\Github\Follow;
+use App\Logics\Github\User;
 use App\Tasks\Task;
 use App\Thrift\Clients\GithubClient;
 use App\Utils\Queue;
@@ -79,6 +80,20 @@ class GithubTask extends Task
         $res = Follow::following($committer);
         // $res = Follow::getFollowers($committer)->toArray();
         dd($res);
+    }
+
+    public function profileAction()
+    {
+        $username = 'limingxinleo';
+        $token = env('RECEIVED_EVENTS_TOKEN');
+
+        // $res = User::profile($username, $token);
+
+        $client = GithubClient::getInstance(['port' => 52100]);
+        $res = $client->userProfile($username, $token);
+
+        dd($res);
+
     }
 
 }

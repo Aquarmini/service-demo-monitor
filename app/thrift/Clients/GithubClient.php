@@ -3,6 +3,7 @@
 namespace App\Thrift\Clients;
 
 use App\Thrift\Client;
+use Xin\Thrift\MonitorService\GithubClient as GithubServiceClient;
 
 class GithubClient extends Client
 {
@@ -12,7 +13,22 @@ class GithubClient extends Client
 
     protected $service = 'github';
 
-    protected $clientName = \Xin\Thrift\MonitorService\GithubClient::class;
+    protected $clientName = GithubServiceClient::class;
+
+    protected $recvTimeoutMilliseconds = 50;
+
+    protected $sendTimeoutMilliseconds;
+
+    /**
+     * @desc
+     * @author limx
+     * @param array $config
+     * @return GithubServiceClient
+     */
+    public static function getInstance($config = [])
+    {
+        return parent::getInstance($config);
+    }
 
 }
 

@@ -1,6 +1,8 @@
 namespace php Xin.Thrift.MonitorService
 
 include "github/commits.thrift"
+include "github/user.thrift"
+
 include "baidu/tieba.thrift"
 
 service Github {
@@ -21,6 +23,9 @@ service Github {
 
     // 显示时间段内，commits变化
     list<commits.CommitsLog> commitsLog(string committer, i32 btime, i32 etime)
+
+    // 从Github查询用户信息
+    user.UserProfile userProfile(string username, string token)
 }
 
 service Baidu {
