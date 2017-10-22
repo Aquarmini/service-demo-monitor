@@ -64,13 +64,14 @@ class ServiceTask extends Socket
     protected function registryHeartbeat(swoole_server $server, $name)
     {
         $worker = new swoole_process(function (swoole_process $worker) use ($name) {
+            $config = di('config')->thrift;
             $client = RegisterClient::getInstance([
-                'host' => env('REGISTER_CENTER_HOST'),
-                'port' => env('REGISTER_CENTER_PORT')
+                'host' => $config->register->host,
+                'port' => $config->register->port,
             ]);
             /** @var AdapterInterface $logger */
             $logger = di('logger')->getLogger('heart', Sys::LOG_ADAPTER_FILE, ['dir' => 'system']);
-            swoole_timer_tick(5000, function () use ($client, $logger, $name) {
+            swoole_timer_tick(5000, function () use ($client, $logger, $name, $config) {
                 $service = new ServiceInfo();
                 $service->name = $name;
                 $service->host = $this->host;
@@ -94,11 +95,7 @@ class ServiceTask extends Socket
                 foreach ($result->services as $key => $item) {
                     $serviceJson = json_encode(Sign::serviceInfoToArray($item));
                     $logger->info($serviceJson);
-                    Redis::hset(
-                        env('REGISTER_CENTER_SERVICE_LIST_KEY', 'phalcon:register:service:list'),
-                        $key,
-                        $serviceJson
-                    );
+                    Redis::hset($config->service->listKey, $key, $serviceJson);
                 }
 
             });
@@ -118,7 +115,8 @@ class ServiceTask extends Socket
         // 重置参数
         $server->set($this->config);
 
-        if (env('REGISTER_CENTER_OPEN', false)) {
+        $isOpen = di('config')->thrift->register->open;
+        if ($isOpen) {
             static::registryHeartbeat($server, 'github');
             static::registryHeartbeat($server, 'baidu');
             // $this->registryHeartbeat($server, 'app');
