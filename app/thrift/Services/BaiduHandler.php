@@ -69,7 +69,29 @@ class BaiduHandler extends Handler implements BaiduIf
 
     public function tiebaList($nickName)
     {
-        // TODO: Implement tiebaList() method.
+        $res = \App\Models\BaiduTieba::find([
+            'conditions' => 'nickname=?0',
+            'bind' => [$nickName]
+        ]);
+
+        $result = [];
+        foreach ($res as $tieba) {
+            $item = new BaiduTieba();
+
+            $item->id = $tieba->id;
+            $item->nickname = $tieba->nickname;
+            $item->fid = $tieba->fid;
+            $item->slogan = $tieba->slogan;
+            $item->avatar = $tieba->avatar;
+            $item->name = $tieba->name;
+            $item->levelupScore = $tieba->levelup_score;
+            $item->levelId = $tieba->level_id;
+            $item->levelName = $tieba->level_name;
+            $item->curScore = $tieba->cur_score;
+            $result[] = $item;
+        }
+
+        return $result;
     }
 
 
