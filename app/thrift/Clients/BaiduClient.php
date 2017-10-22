@@ -14,5 +14,20 @@ class BaiduClient extends Client
 
     protected $clientName = \Xin\Thrift\MonitorService\BaiduClient::class;
 
+    protected $recvTimeoutMilliseconds = 50;
+
+    protected $sendTimeoutMilliseconds;
+
+    /**
+     * @desc
+     * @author limx
+     * @param array $config
+     * @return \Xin\Thrift\MonitorService\BaiduClient
+     */
+    public static function getInstance($config = [])
+    {
+        return parent::getInstance($config);
+    }
+
 }
 

@@ -32,5 +32,12 @@ class BaiduTask extends Task
         dump($res);
     }
 
+    public function tiebaListAction()
+    {
+        $client = BaiduClient::getInstance(['host' => 'my.server.host', 'port' => 52100]);
+        $res = $client->tiebaList('桃园丶龙玉箫');
+        dump($res);
+    }
+
 }
 
