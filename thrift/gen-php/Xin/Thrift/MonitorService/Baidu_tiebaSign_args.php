@@ -31,11 +31,11 @@ class Baidu_tiebaSign_args {
   public function __construct($vals=null) {
     if (!isset(self::$_TSPEC)) {
       self::$_TSPEC = array(
-        -1 => array(
+        1 => array(
           'var' => 'bdUss',
           'type' => TType::STRING,
           ),
-        -2 => array(
+        2 => array(
           'var' => 'nickName',
           'type' => TType::STRING,
           ),
@@ -70,14 +70,14 @@ class Baidu_tiebaSign_args {
       }
       switch ($fid)
       {
-        case -1:
+        case 1:
           if ($ftype == TType::STRING) {
             $xfer += $input->readString($this->bdUss);
           } else {
             $xfer += $input->skip($ftype);
           }
           break;
-        case -2:
+        case 2:
           if ($ftype == TType::STRING) {
             $xfer += $input->readString($this->nickName);
           } else {
@@ -97,14 +97,14 @@ class Baidu_tiebaSign_args {
   public function write($output) {
     $xfer = 0;
     $xfer += $output->writeStructBegin('Baidu_tiebaSign_args');
-    if ($this->nickName !== null) {
-      $xfer += $output->writeFieldBegin('nickName', TType::STRING, -2);
-      $xfer += $output->writeString($this->nickName);
+    if ($this->bdUss !== null) {
+      $xfer += $output->writeFieldBegin('bdUss', TType::STRING, 1);
+      $xfer += $output->writeString($this->bdUss);
       $xfer += $output->writeFieldEnd();
     }
-    if ($this->bdUss !== null) {
-      $xfer += $output->writeFieldBegin('bdUss', TType::STRING, -1);
-      $xfer += $output->writeString($this->bdUss);
+    if ($this->nickName !== null) {
+      $xfer += $output->writeFieldBegin('nickName', TType::STRING, 2);
+      $xfer += $output->writeString($this->nickName);
       $xfer += $output->writeFieldEnd();
     }
     $xfer += $output->writeFieldStop();

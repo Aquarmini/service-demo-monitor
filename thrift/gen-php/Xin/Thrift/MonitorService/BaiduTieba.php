@@ -60,6 +60,10 @@ class BaiduTieba {
    * @var int
    */
   public $curScore = null;
+  /**
+   * @var bool
+   */
+  public $isSigned = null;
 
   public function __construct($vals=null) {
     if (!isset(self::$_TSPEC)) {
@@ -104,6 +108,10 @@ class BaiduTieba {
           'var' => 'curScore',
           'type' => TType::I32,
           ),
+        11 => array(
+          'var' => 'isSigned',
+          'type' => TType::BOOL,
+          ),
         );
     }
     if (is_array($vals)) {
@@ -136,6 +144,9 @@ class BaiduTieba {
       }
       if (isset($vals['curScore'])) {
         $this->curScore = $vals['curScore'];
+      }
+      if (isset($vals['isSigned'])) {
+        $this->isSigned = $vals['isSigned'];
       }
     }
   }
@@ -229,6 +240,13 @@ class BaiduTieba {
             $xfer += $input->skip($ftype);
           }
           break;
+        case 11:
+          if ($ftype == TType::BOOL) {
+            $xfer += $input->readBool($this->isSigned);
+          } else {
+            $xfer += $input->skip($ftype);
+          }
+          break;
         default:
           $xfer += $input->skip($ftype);
           break;
@@ -290,6 +308,11 @@ class BaiduTieba {
     if ($this->curScore !== null) {
       $xfer += $output->writeFieldBegin('curScore', TType::I32, 10);
       $xfer += $output->writeI32($this->curScore);
+      $xfer += $output->writeFieldEnd();
+    }
+    if ($this->isSigned !== null) {
+      $xfer += $output->writeFieldBegin('isSigned', TType::BOOL, 11);
+      $xfer += $output->writeBool($this->isSigned);
       $xfer += $output->writeFieldEnd();
     }
     $xfer += $output->writeFieldStop();

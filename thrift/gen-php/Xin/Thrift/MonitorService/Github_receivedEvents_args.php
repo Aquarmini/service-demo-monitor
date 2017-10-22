@@ -31,11 +31,11 @@ class Github_receivedEvents_args {
   public function __construct($vals=null) {
     if (!isset(self::$_TSPEC)) {
       self::$_TSPEC = array(
-        -1 => array(
+        1 => array(
           'var' => 'username',
           'type' => TType::STRING,
           ),
-        -2 => array(
+        2 => array(
           'var' => 'token',
           'type' => TType::STRING,
           ),
@@ -70,14 +70,14 @@ class Github_receivedEvents_args {
       }
       switch ($fid)
       {
-        case -1:
+        case 1:
           if ($ftype == TType::STRING) {
             $xfer += $input->readString($this->username);
           } else {
             $xfer += $input->skip($ftype);
           }
           break;
-        case -2:
+        case 2:
           if ($ftype == TType::STRING) {
             $xfer += $input->readString($this->token);
           } else {
@@ -97,14 +97,14 @@ class Github_receivedEvents_args {
   public function write($output) {
     $xfer = 0;
     $xfer += $output->writeStructBegin('Github_receivedEvents_args');
-    if ($this->token !== null) {
-      $xfer += $output->writeFieldBegin('token', TType::STRING, -2);
-      $xfer += $output->writeString($this->token);
+    if ($this->username !== null) {
+      $xfer += $output->writeFieldBegin('username', TType::STRING, 1);
+      $xfer += $output->writeString($this->username);
       $xfer += $output->writeFieldEnd();
     }
-    if ($this->username !== null) {
-      $xfer += $output->writeFieldBegin('username', TType::STRING, -1);
-      $xfer += $output->writeString($this->username);
+    if ($this->token !== null) {
+      $xfer += $output->writeFieldBegin('token', TType::STRING, 2);
+      $xfer += $output->writeString($this->token);
       $xfer += $output->writeFieldEnd();
     }
     $xfer += $output->writeFieldStop();

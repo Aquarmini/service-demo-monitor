@@ -66,4 +66,11 @@ class BaiduHandler extends Handler implements BaiduIf
 
         return $result;
     }
+
+    public function tiebaList($nickName)
+    {
+        // TODO: Implement tiebaList() method.
+    }
+
+
 }

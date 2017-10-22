@@ -31,11 +31,11 @@ class Github_commits_args {
   public function __construct($vals=null) {
     if (!isset(self::$_TSPEC)) {
       self::$_TSPEC = array(
-        -1 => array(
+        1 => array(
           'var' => 'committer',
           'type' => TType::STRING,
           ),
-        -2 => array(
+        2 => array(
           'var' => 'token',
           'type' => TType::STRING,
           ),
@@ -70,14 +70,14 @@ class Github_commits_args {
       }
       switch ($fid)
       {
-        case -1:
+        case 1:
           if ($ftype == TType::STRING) {
             $xfer += $input->readString($this->committer);
           } else {
             $xfer += $input->skip($ftype);
           }
           break;
-        case -2:
+        case 2:
           if ($ftype == TType::STRING) {
             $xfer += $input->readString($this->token);
           } else {
@@ -97,14 +97,14 @@ class Github_commits_args {
   public function write($output) {
     $xfer = 0;
     $xfer += $output->writeStructBegin('Github_commits_args');
-    if ($this->token !== null) {
-      $xfer += $output->writeFieldBegin('token', TType::STRING, -2);
-      $xfer += $output->writeString($this->token);
+    if ($this->committer !== null) {
+      $xfer += $output->writeFieldBegin('committer', TType::STRING, 1);
+      $xfer += $output->writeString($this->committer);
       $xfer += $output->writeFieldEnd();
     }
-    if ($this->committer !== null) {
-      $xfer += $output->writeFieldBegin('committer', TType::STRING, -1);
-      $xfer += $output->writeString($this->committer);
+    if ($this->token !== null) {
+      $xfer += $output->writeFieldBegin('token', TType::STRING, 2);
+      $xfer += $output->writeString($this->token);
       $xfer += $output->writeFieldEnd();
     }
     $xfer += $output->writeFieldStop();

@@ -36,6 +36,11 @@ interface BaiduIf {
    * @return \Xin\Thrift\MonitorService\BaiduTieba
    */
   public function tieba($bdUss, $nickName, $name);
+  /**
+   * @param string $nickName
+   * @return \Xin\Thrift\MonitorService\BaiduTieba[]
+   */
+  public function tiebaList($nickName);
 }
 
 

@@ -16,43 +16,32 @@ use Thrift\Protocol\TBinaryProtocolAccelerated;
 use Thrift\Exception\TApplicationException;
 
 
-class Github_followingCommits_args {
+class Baidu_tiebaList_args {
   static $_TSPEC;
 
   /**
    * @var string
    */
-  public $username = null;
-  /**
-   * @var string
-   */
-  public $token = null;
+  public $nickName = null;
 
   public function __construct($vals=null) {
     if (!isset(self::$_TSPEC)) {
       self::$_TSPEC = array(
         1 => array(
-          'var' => 'username',
-          'type' => TType::STRING,
-          ),
-        2 => array(
-          'var' => 'token',
+          'var' => 'nickName',
           'type' => TType::STRING,
           ),
         );
     }
     if (is_array($vals)) {
-      if (isset($vals['username'])) {
-        $this->username = $vals['username'];
-      }
-      if (isset($vals['token'])) {
-        $this->token = $vals['token'];
+      if (isset($vals['nickName'])) {
+        $this->nickName = $vals['nickName'];
       }
     }
   }
 
   public function getName() {
-    return 'Github_followingCommits_args';
+    return 'Baidu_tiebaList_args';
   }
 
   public function read($input)
@@ -72,14 +61,7 @@ class Github_followingCommits_args {
       {
         case 1:
           if ($ftype == TType::STRING) {
-            $xfer += $input->readString($this->username);
-          } else {
-            $xfer += $input->skip($ftype);
-          }
-          break;
-        case 2:
-          if ($ftype == TType::STRING) {
-            $xfer += $input->readString($this->token);
+            $xfer += $input->readString($this->nickName);
           } else {
             $xfer += $input->skip($ftype);
           }
@@ -96,15 +78,10 @@ class Github_followingCommits_args {
 
   public function write($output) {
     $xfer = 0;
-    $xfer += $output->writeStructBegin('Github_followingCommits_args');
-    if ($this->username !== null) {
-      $xfer += $output->writeFieldBegin('username', TType::STRING, 1);
-      $xfer += $output->writeString($this->username);
-      $xfer += $output->writeFieldEnd();
-    }
-    if ($this->token !== null) {
-      $xfer += $output->writeFieldBegin('token', TType::STRING, 2);
-      $xfer += $output->writeString($this->token);
+    $xfer += $output->writeStructBegin('Baidu_tiebaList_args');
+    if ($this->nickName !== null) {
+      $xfer += $output->writeFieldBegin('nickName', TType::STRING, 1);
+      $xfer += $output->writeString($this->nickName);
       $xfer += $output->writeFieldEnd();
     }
     $xfer += $output->writeFieldStop();

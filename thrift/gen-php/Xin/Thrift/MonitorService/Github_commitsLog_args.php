@@ -35,15 +35,15 @@ class Github_commitsLog_args {
   public function __construct($vals=null) {
     if (!isset(self::$_TSPEC)) {
       self::$_TSPEC = array(
-        -1 => array(
+        1 => array(
           'var' => 'committer',
           'type' => TType::STRING,
           ),
-        -2 => array(
+        2 => array(
           'var' => 'btime',
           'type' => TType::I32,
           ),
-        -3 => array(
+        3 => array(
           'var' => 'etime',
           'type' => TType::I32,
           ),
@@ -81,21 +81,21 @@ class Github_commitsLog_args {
       }
       switch ($fid)
       {
-        case -1:
+        case 1:
           if ($ftype == TType::STRING) {
             $xfer += $input->readString($this->committer);
           } else {
             $xfer += $input->skip($ftype);
           }
           break;
-        case -2:
+        case 2:
           if ($ftype == TType::I32) {
             $xfer += $input->readI32($this->btime);
           } else {
             $xfer += $input->skip($ftype);
           }
           break;
-        case -3:
+        case 3:
           if ($ftype == TType::I32) {
             $xfer += $input->readI32($this->etime);
           } else {
@@ -115,19 +115,19 @@ class Github_commitsLog_args {
   public function write($output) {
     $xfer = 0;
     $xfer += $output->writeStructBegin('Github_commitsLog_args');
-    if ($this->etime !== null) {
-      $xfer += $output->writeFieldBegin('etime', TType::I32, -3);
-      $xfer += $output->writeI32($this->etime);
+    if ($this->committer !== null) {
+      $xfer += $output->writeFieldBegin('committer', TType::STRING, 1);
+      $xfer += $output->writeString($this->committer);
       $xfer += $output->writeFieldEnd();
     }
     if ($this->btime !== null) {
-      $xfer += $output->writeFieldBegin('btime', TType::I32, -2);
+      $xfer += $output->writeFieldBegin('btime', TType::I32, 2);
       $xfer += $output->writeI32($this->btime);
       $xfer += $output->writeFieldEnd();
     }
-    if ($this->committer !== null) {
-      $xfer += $output->writeFieldBegin('committer', TType::STRING, -1);
-      $xfer += $output->writeString($this->committer);
+    if ($this->etime !== null) {
+      $xfer += $output->writeFieldBegin('etime', TType::I32, 3);
+      $xfer += $output->writeI32($this->etime);
       $xfer += $output->writeFieldEnd();
     }
     $xfer += $output->writeFieldStop();
