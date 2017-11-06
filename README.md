@@ -10,13 +10,33 @@
 [wiki](https://github.com/limingxinleo/simple-subcontrollers.phalcon/wiki)
 
 ## 安装
-* 使用Composer安装Thrift扩展后，把go的扩展包拷贝到GOPATH中(或建立软连接)。
+1. 安装项目
+~~~
+composer create-project limingxinleo/thrift-go-phalcon-project
+~~~
+2. 使用Composer安装Thrift扩展后，把go的扩展包拷贝到GOPATH中(或建立软连接)。
 ~~~
 ln -s  /your/path/to/thrift-go-phalcon-project/vendor/apache/thrift/lib/go/thrift thrift
 ~~~
-* 编译Go服务 使用 thrift -r --gen go:thrift_import=thrift App.thrift
-* 编译Php服务 使用 thrift -r --gen php:server,psr4 App.thrift
+3. 编译服务 
+- Go 使用 thrift -r --gen go:thrift_import=thrift App.thrift
+- Php 使用 thrift -r --gen php:server,psr4 App.thrift
 
+4. Go服务安装
+~~~
+从GO官网下载编译好的压缩包 例如 go1.8.3.linux-amd64.tar.gz
+$ tar -xzf go1.8.3.linux-amd64.tar.gz
+$ mv go /usr/local/go/1.8.3
+$ vim /etc/profile 
+export GOROOT='/usr/local/go/1.8.3' # 没有文件夹则新建
+export GOPATH='/usr/local/go/libs/' # 没有文件夹则新建
+export PATH=$GOROOT/bin:$PATH
+$ go get -u github.com/kardianos/govendor
+$ cd /usr/local/go/libs/src/github.com/kardianos/govendor/
+$ go build
+$ cd /usr/local/bin
+$ ln -s /usr/local/go/libs/src/github.com/kardianos/govendor/govendor govendor
+~~~
 
 ## Go&Swoole RPC 服务
 * Go
@@ -54,8 +74,8 @@ class AppHandler extends Handler implements AppIf
 
 ## 服务发现
 1. 项目本人已内置基于Thrift的注册中心功能
-暂只实现Swoole服务注册中心
-Go服务注册中心 敬请期待！！
+- 已实现Swoole服务注册中心
+- 已实现Go服务注册中心
 
 2. 或者配合[注册中心](https://github.com/limingxinleo/service-registry-swoole-phalcon.git)一起使用
 app/tasks/Thrift/ServiceTask.php

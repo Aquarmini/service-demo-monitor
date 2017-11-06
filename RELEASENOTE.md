@@ -2,18 +2,32 @@
 
 ## [Unreleased]
 ### Checked
+- [ ] php单元测试
+
+### Added
+
+### Changed
+不使用系统方法 system删除缓存
+
+### Fixed
+
+## [2.0.5]
+### Checked
 - [x] php单元测试
 
 ### Added
 * Swoole Socket增加用户组
 * Socket基类增加beforeServerStart方法
+* 增加中间件支持
 
 ### Changed
 * 重写Debug工具类
 * 重构Mongo工具类
 * 重构Mongo服务注入
+* 修改limx\Support\Str工具类为Phalcon\Text工具类
 
 ### Fixed
+* 修改中间件在php7.1下报错的BUG
 
 ## [2.0.0]
 ### Checked

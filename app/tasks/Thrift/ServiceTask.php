@@ -13,8 +13,8 @@ use Xin\Phalcon\Logger\Sys;
 use Xin\Thrift\MonitorService\BaiduProcessor;
 use Xin\Thrift\MonitorService\GithubProcessor;
 use App\Utils\Register\Sign;
-use limx\Support\Str;
 use Phalcon\Logger\AdapterInterface;
+use Phalcon\Text;
 use Xin\Phalcon\Cli\Traits\Input;
 use Xin\Thrift\MicroService\AppProcessor;
 use swoole_server;
@@ -76,7 +76,7 @@ class ServiceTask extends Socket
                 $service->name = $name;
                 $service->host = $this->host;
                 $service->port = $this->port;
-                $service->nonce = Str::random(16);
+                $service->nonce = Text::random(Text::RANDOM_ALNUM, 16);
                 $service->isService = true;
                 $service->sign = Sign::sign(Sign::serviceInfoToArray($service));
 
