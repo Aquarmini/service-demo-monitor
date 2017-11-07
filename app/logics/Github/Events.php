@@ -42,7 +42,7 @@ class Events extends Base
                     "msgtype" => "markdown",
                     "markdown" => [
                         "title" => "收到Github的新事件推送",
-                        "text" => "### 收到Github的新事件推送" .
+                        "text" => "### 收到Github的新事件推送\n" .
                             "> ![]({$actor_avator})\n" .
                             "> {$actor_login}有一个[{$repo_name}]({$repo_url})类型为{$type}的事件消息\n\n" .
                             "> 时间：{$created_at}\n"
