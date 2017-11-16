@@ -23,12 +23,8 @@ class GithubTask extends Task
 
     public function eventsAction()
     {
-        $service = Redis::hget(env('REGISTRY_SERVICE'), env('REGISTRY_SERVICE'));
-        $service = json_decode($service);
-
-        $client = GithubClient::getInstance(['ip' => $service->ip, 'port' => $service->port]);
-
-        $client->receivedEvents(env('RECEIVED_EVENTS_TOKEN'));
+        $client = GithubClient::getInstance();
+        $client->receivedEvents('limingxinleo', env('RECEIVED_EVENTS_TOKEN'));
     }
 
     public function searchAction()
