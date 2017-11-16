@@ -17,7 +17,7 @@ class GithubTask extends Task
 
     public function commitsAction()
     {
-        $client = GithubClient::getInstance(['port' => 52100]);
+        $client = GithubClient::getInstance();
         $client->commits('limingxinleo', env('RECEIVED_EVENTS_TOKEN'));
     }
 
