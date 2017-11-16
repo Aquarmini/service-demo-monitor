@@ -8,10 +8,10 @@
 // +----------------------------------------------------------------------
 namespace Test\App\Logics;
 
-use App\Logics\Base;
 use Phalcon\Text;
+use App\Core\Support\CacheBase;
 
-class Test extends Base
+class Test extends CacheBase
 {
     /**
      * @desc   获取项目版本号
@@ -22,5 +22,4 @@ class Test extends Base
     {
         return Text::random(Text::RANDOM_DISTINCT, 5);
     }
-
 }
