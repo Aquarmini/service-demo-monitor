@@ -2,12 +2,12 @@
 
 namespace App\Logics\Github;
 
-use App\Logics\Base;
+use App\Core\Support\CacheBase;
 use App\Models\Followers;
 use App\Utils\Curl;
 use App\Utils\Log;
 
-class Follow extends Base
+class Follow extends CacheBase
 {
     /**
      * @desc   我关注的

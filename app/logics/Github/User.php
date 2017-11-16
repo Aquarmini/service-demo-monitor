@@ -2,10 +2,10 @@
 
 namespace App\Logics\Github;
 
-use App\Logics\Base;
+use App\Core\Support\CacheBase;
 use App\Utils\Curl;
 
-class User extends Base
+class User extends CacheBase
 {
     /**
      * @desc   获取Github用户信息

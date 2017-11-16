@@ -2,12 +2,12 @@
 
 namespace App\Logics\Github;
 
-use App\Logics\Base;
+use App\Core\Support\CacheBase;
 use App\Utils\Curl;
 use App\Utils\Log;
 use App\Utils\Redis;
 
-class Events extends Base
+class Events extends CacheBase
 {
     public static function received($username, $token)
     {

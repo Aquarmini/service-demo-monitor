@@ -2,14 +2,14 @@
 
 namespace App\Logics\Baidu;
 
-use App\Logics\Base;
+use App\Core\Support\CacheBase;
 use App\Models\BaiduTieba;
 use App\Utils\Curl;
 use App\Utils\Log;
 use App\Utils\Redis;
 use Yi\Baidu\Application;
 
-class TiebaClient extends Base
+class TiebaClient extends CacheBase
 {
     public static $_instance = [];
 

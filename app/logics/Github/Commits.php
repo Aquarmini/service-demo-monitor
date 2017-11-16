@@ -2,14 +2,14 @@
 
 namespace App\Logics\Github;
 
-use App\Logics\Base;
+use App\Core\Support\CacheBase;
 use App\Models\CommitsLog;
 use App\Models\Followers;
 use App\Utils\Curl;
 use App\Utils\Log;
 use App\Utils\Redis;
 
-class Commits extends Base
+class Commits extends CacheBase
 {
     /**
      * @desc   获取commit日志

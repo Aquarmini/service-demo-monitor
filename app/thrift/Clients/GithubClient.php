@@ -7,9 +7,9 @@ use Xin\Thrift\MonitorService\GithubClient as GithubServiceClient;
 
 class GithubClient extends Client
 {
-    protected $host = '127.0.0.1';
+    protected $host = 'my.server.host';
 
-    protected $port = '10086';
+    protected $port = '52100';
 
     protected $service = 'github';
 
