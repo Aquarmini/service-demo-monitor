@@ -2,15 +2,11 @@
 
 namespace App\Tasks\Test;
 
-use App\Jobs\GithubReceivedEventJob;
-use App\Logics\Github\Events;
-use App\Logics\Github\Commits;
-use App\Logics\Github\Follow;
-use App\Logics\Github\User;
+use App\Biz\Github\Events;
+use App\Biz\Github\Commits;
+use App\Biz\Github\Follow;
 use App\Tasks\Task;
 use App\Thrift\Clients\GithubClient;
-use App\Utils\Queue;
-use App\Utils\Redis;
 
 class GithubTask extends Task
 {
@@ -25,6 +21,15 @@ class GithubTask extends Task
     {
         $client = GithubClient::getInstance();
         $client->receivedEvents('limingxinleo', env('RECEIVED_EVENTS_TOKEN'));
+    }
+
+    public function commitsLogAction()
+    {
+        $client = GithubClient::getInstance();
+        $btime = time() - 24 * 3600;
+        $etime = time();
+        $res = $client->commitsLog('limingxinleo', $btime, $etime);
+        dd($res);
     }
 
     public function searchAction()

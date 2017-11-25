@@ -3,7 +3,7 @@
 namespace App\Jobs;
 
 use App\Jobs\Contract\JobInterface;
-use App\Logics\Github\Commits;
+use App\Biz\Github\Commits;
 
 class GithubFollowingCommitsJob implements JobInterface
 {

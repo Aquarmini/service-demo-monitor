@@ -3,7 +3,7 @@
 namespace App\Jobs;
 
 use App\Jobs\Contract\JobInterface;
-use App\Logics\Github\Follow;
+use App\Biz\Github\Follow;
 use App\Utils\Redis;
 
 class GithubFollowingJob implements JobInterface

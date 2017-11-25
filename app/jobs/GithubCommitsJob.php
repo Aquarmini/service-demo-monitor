@@ -3,11 +3,7 @@
 namespace App\Jobs;
 
 use App\Jobs\Contract\JobInterface;
-use App\Logics\Github\Commits;
-use App\Models\CommitsLog;
-use App\Utils\Curl;
-use App\Utils\Log;
-use App\Utils\Redis;
+use App\Biz\Github\Commits;
 
 class GithubCommitsJob implements JobInterface
 {
