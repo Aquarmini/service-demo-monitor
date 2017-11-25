@@ -3,7 +3,7 @@
 namespace App\Jobs;
 
 use App\Jobs\Contract\JobInterface;
-use App\Logics\Baidu\TiebaClient;
+use App\Biz\Baidu\TiebaClient;
 
 class BaiduTiebaSignJob implements JobInterface
 {

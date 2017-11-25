@@ -2,11 +2,8 @@
 
 namespace App\Tasks\Test;
 
-use App\Logics\Baidu\TiebaClient;
 use App\Tasks\Task;
 use App\Thrift\Clients\BaiduClient;
-use Xin\Cli\Color;
-use Xin\Thrift\MonitorService\BaiduTieba;
 
 class BaiduTask extends Task
 {

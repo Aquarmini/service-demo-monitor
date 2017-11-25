@@ -9,7 +9,7 @@
 namespace App\Thrift\Services;
 
 use App\Jobs\BaiduTiebaSignJob;
-use App\Logics\Baidu\TiebaClient;
+use App\Biz\Baidu\TiebaClient;
 use App\Utils\Queue;
 use Xin\Thrift\MonitorService\BaiduIf;
 use Xin\Thrift\MonitorService\BaiduTieba;
