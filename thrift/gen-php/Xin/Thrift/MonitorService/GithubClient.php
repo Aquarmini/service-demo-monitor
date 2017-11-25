@@ -76,6 +76,9 @@ class GithubClient implements \Xin\Thrift\MonitorService\GithubIf {
     if ($result->success !== null) {
       return $result->success;
     }
+    if ($result->ex !== null) {
+      throw $result->ex;
+    }
     throw new \Exception("receivedEvents failed: unknown result");
   }
 
@@ -127,6 +130,9 @@ class GithubClient implements \Xin\Thrift\MonitorService\GithubIf {
     }
     if ($result->success !== null) {
       return $result->success;
+    }
+    if ($result->ex !== null) {
+      throw $result->ex;
     }
     throw new \Exception("commits failed: unknown result");
   }
@@ -180,6 +186,9 @@ class GithubClient implements \Xin\Thrift\MonitorService\GithubIf {
     if ($result->success !== null) {
       return $result->success;
     }
+    if ($result->ex !== null) {
+      throw $result->ex;
+    }
     throw new \Exception("updateFollowers failed: unknown result");
   }
 
@@ -232,6 +241,9 @@ class GithubClient implements \Xin\Thrift\MonitorService\GithubIf {
     if ($result->success !== null) {
       return $result->success;
     }
+    if ($result->ex !== null) {
+      throw $result->ex;
+    }
     throw new \Exception("updateFollowing failed: unknown result");
   }
 
@@ -283,6 +295,9 @@ class GithubClient implements \Xin\Thrift\MonitorService\GithubIf {
     }
     if ($result->success !== null) {
       return $result->success;
+    }
+    if ($result->ex !== null) {
+      throw $result->ex;
     }
     throw new \Exception("followingCommits failed: unknown result");
   }
@@ -337,6 +352,9 @@ class GithubClient implements \Xin\Thrift\MonitorService\GithubIf {
     if ($result->success !== null) {
       return $result->success;
     }
+    if ($result->ex !== null) {
+      throw $result->ex;
+    }
     throw new \Exception("commitsLog failed: unknown result");
   }
 
@@ -388,6 +406,9 @@ class GithubClient implements \Xin\Thrift\MonitorService\GithubIf {
     }
     if ($result->success !== null) {
       return $result->success;
+    }
+    if ($result->ex !== null) {
+      throw $result->ex;
     }
     throw new \Exception("userProfile failed: unknown result");
   }

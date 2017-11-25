@@ -76,6 +76,9 @@ class BaiduClient implements \Xin\Thrift\MonitorService\BaiduIf {
     if ($result->success !== null) {
       return $result->success;
     }
+    if ($result->ex !== null) {
+      throw $result->ex;
+    }
     throw new \Exception("tiebaSign failed: unknown result");
   }
 
@@ -127,6 +130,9 @@ class BaiduClient implements \Xin\Thrift\MonitorService\BaiduIf {
     }
     if ($result->success !== null) {
       return $result->success;
+    }
+    if ($result->ex !== null) {
+      throw $result->ex;
     }
     throw new \Exception("myTiebas failed: unknown result");
   }
@@ -181,6 +187,9 @@ class BaiduClient implements \Xin\Thrift\MonitorService\BaiduIf {
     if ($result->success !== null) {
       return $result->success;
     }
+    if ($result->ex !== null) {
+      throw $result->ex;
+    }
     throw new \Exception("tieba failed: unknown result");
   }
 
@@ -231,6 +240,9 @@ class BaiduClient implements \Xin\Thrift\MonitorService\BaiduIf {
     }
     if ($result->success !== null) {
       return $result->success;
+    }
+    if ($result->ex !== null) {
+      throw $result->ex;
     }
     throw new \Exception("tiebaList failed: unknown result");
   }

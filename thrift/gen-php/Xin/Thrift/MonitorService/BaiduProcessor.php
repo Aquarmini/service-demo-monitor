@@ -48,7 +48,11 @@ class BaiduProcessor {
     $args->read($input);
     $input->readMessageEnd();
     $result = new \Xin\Thrift\MonitorService\Baidu_tiebaSign_result();
-    $result->success = $this->handler_->tiebaSign($args->bdUss, $args->nickName);
+    try {
+      $result->success = $this->handler_->tiebaSign($args->bdUss, $args->nickName);
+    } catch (\Xin\Thrift\MonitorService\ThriftException $ex) {
+      $result->ex = $ex;
+    }
     $bin_accel = ($output instanceof TBinaryProtocolAccelerated) && function_exists('thrift_protocol_write_binary');
     if ($bin_accel)
     {
@@ -67,7 +71,11 @@ class BaiduProcessor {
     $args->read($input);
     $input->readMessageEnd();
     $result = new \Xin\Thrift\MonitorService\Baidu_myTiebas_result();
-    $result->success = $this->handler_->myTiebas($args->bdUss, $args->nickName);
+    try {
+      $result->success = $this->handler_->myTiebas($args->bdUss, $args->nickName);
+    } catch (\Xin\Thrift\MonitorService\ThriftException $ex) {
+      $result->ex = $ex;
+    }
     $bin_accel = ($output instanceof TBinaryProtocolAccelerated) && function_exists('thrift_protocol_write_binary');
     if ($bin_accel)
     {
@@ -86,7 +94,11 @@ class BaiduProcessor {
     $args->read($input);
     $input->readMessageEnd();
     $result = new \Xin\Thrift\MonitorService\Baidu_tieba_result();
-    $result->success = $this->handler_->tieba($args->bdUss, $args->nickName, $args->name);
+    try {
+      $result->success = $this->handler_->tieba($args->bdUss, $args->nickName, $args->name);
+    } catch (\Xin\Thrift\MonitorService\ThriftException $ex) {
+      $result->ex = $ex;
+    }
     $bin_accel = ($output instanceof TBinaryProtocolAccelerated) && function_exists('thrift_protocol_write_binary');
     if ($bin_accel)
     {
@@ -105,7 +117,11 @@ class BaiduProcessor {
     $args->read($input);
     $input->readMessageEnd();
     $result = new \Xin\Thrift\MonitorService\Baidu_tiebaList_result();
-    $result->success = $this->handler_->tiebaList($args->nickName);
+    try {
+      $result->success = $this->handler_->tiebaList($args->nickName);
+    } catch (\Xin\Thrift\MonitorService\ThriftException $ex) {
+      $result->ex = $ex;
+    }
     $bin_accel = ($output instanceof TBinaryProtocolAccelerated) && function_exists('thrift_protocol_write_binary');
     if ($bin_accel)
     {

@@ -23,6 +23,10 @@ class Baidu_myTiebas_result {
    * @var \Xin\Thrift\MonitorService\BaiduTieba[]
    */
   public $success = null;
+  /**
+   * @var \Xin\Thrift\MonitorService\ThriftException
+   */
+  public $ex = null;
 
   public function __construct($vals=null) {
     if (!isset(self::$_TSPEC)) {
@@ -36,11 +40,19 @@ class Baidu_myTiebas_result {
             'class' => '\Xin\Thrift\MonitorService\BaiduTieba',
             ),
           ),
+        1 => array(
+          'var' => 'ex',
+          'type' => TType::STRUCT,
+          'class' => '\Xin\Thrift\MonitorService\ThriftException',
+          ),
         );
     }
     if (is_array($vals)) {
       if (isset($vals['success'])) {
         $this->success = $vals['success'];
+      }
+      if (isset($vals['ex'])) {
+        $this->ex = $vals['ex'];
       }
     }
   }
@@ -82,6 +94,14 @@ class Baidu_myTiebas_result {
             $xfer += $input->skip($ftype);
           }
           break;
+        case 1:
+          if ($ftype == TType::STRUCT) {
+            $this->ex = new \Xin\Thrift\MonitorService\ThriftException();
+            $xfer += $this->ex->read($input);
+          } else {
+            $xfer += $input->skip($ftype);
+          }
+          break;
         default:
           $xfer += $input->skip($ftype);
           break;
@@ -110,6 +130,11 @@ class Baidu_myTiebas_result {
         }
         $output->writeListEnd();
       }
+      $xfer += $output->writeFieldEnd();
+    }
+    if ($this->ex !== null) {
+      $xfer += $output->writeFieldBegin('ex', TType::STRUCT, 1);
+      $xfer += $this->ex->write($output);
       $xfer += $output->writeFieldEnd();
     }
     $xfer += $output->writeFieldStop();

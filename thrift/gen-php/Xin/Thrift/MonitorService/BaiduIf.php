@@ -21,12 +21,14 @@ interface BaiduIf {
    * @param string $bdUss
    * @param string $nickName
    * @return bool
+   * @throws \Xin\Thrift\MonitorService\ThriftException
    */
   public function tiebaSign($bdUss, $nickName);
   /**
    * @param string $bdUss
    * @param string $nickName
    * @return \Xin\Thrift\MonitorService\BaiduTieba[]
+   * @throws \Xin\Thrift\MonitorService\ThriftException
    */
   public function myTiebas($bdUss, $nickName);
   /**
@@ -34,11 +36,13 @@ interface BaiduIf {
    * @param string $nickName
    * @param string $name
    * @return \Xin\Thrift\MonitorService\BaiduTieba
+   * @throws \Xin\Thrift\MonitorService\ThriftException
    */
   public function tieba($bdUss, $nickName, $name);
   /**
    * @param string $nickName
    * @return \Xin\Thrift\MonitorService\BaiduTieba[]
+   * @throws \Xin\Thrift\MonitorService\ThriftException
    */
   public function tiebaList($nickName);
 }

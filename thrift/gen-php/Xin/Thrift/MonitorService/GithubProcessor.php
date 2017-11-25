@@ -48,7 +48,11 @@ class GithubProcessor {
     $args->read($input);
     $input->readMessageEnd();
     $result = new \Xin\Thrift\MonitorService\Github_receivedEvents_result();
-    $result->success = $this->handler_->receivedEvents($args->username, $args->token);
+    try {
+      $result->success = $this->handler_->receivedEvents($args->username, $args->token);
+    } catch (\Xin\Thrift\MonitorService\ThriftException $ex) {
+      $result->ex = $ex;
+    }
     $bin_accel = ($output instanceof TBinaryProtocolAccelerated) && function_exists('thrift_protocol_write_binary');
     if ($bin_accel)
     {
@@ -67,7 +71,11 @@ class GithubProcessor {
     $args->read($input);
     $input->readMessageEnd();
     $result = new \Xin\Thrift\MonitorService\Github_commits_result();
-    $result->success = $this->handler_->commits($args->committer, $args->token);
+    try {
+      $result->success = $this->handler_->commits($args->committer, $args->token);
+    } catch (\Xin\Thrift\MonitorService\ThriftException $ex) {
+      $result->ex = $ex;
+    }
     $bin_accel = ($output instanceof TBinaryProtocolAccelerated) && function_exists('thrift_protocol_write_binary');
     if ($bin_accel)
     {
@@ -86,7 +94,11 @@ class GithubProcessor {
     $args->read($input);
     $input->readMessageEnd();
     $result = new \Xin\Thrift\MonitorService\Github_updateFollowers_result();
-    $result->success = $this->handler_->updateFollowers($args->username, $args->token);
+    try {
+      $result->success = $this->handler_->updateFollowers($args->username, $args->token);
+    } catch (\Xin\Thrift\MonitorService\ThriftException $ex) {
+      $result->ex = $ex;
+    }
     $bin_accel = ($output instanceof TBinaryProtocolAccelerated) && function_exists('thrift_protocol_write_binary');
     if ($bin_accel)
     {
@@ -105,7 +117,11 @@ class GithubProcessor {
     $args->read($input);
     $input->readMessageEnd();
     $result = new \Xin\Thrift\MonitorService\Github_updateFollowing_result();
-    $result->success = $this->handler_->updateFollowing($args->username, $args->token);
+    try {
+      $result->success = $this->handler_->updateFollowing($args->username, $args->token);
+    } catch (\Xin\Thrift\MonitorService\ThriftException $ex) {
+      $result->ex = $ex;
+    }
     $bin_accel = ($output instanceof TBinaryProtocolAccelerated) && function_exists('thrift_protocol_write_binary');
     if ($bin_accel)
     {
@@ -124,7 +140,11 @@ class GithubProcessor {
     $args->read($input);
     $input->readMessageEnd();
     $result = new \Xin\Thrift\MonitorService\Github_followingCommits_result();
-    $result->success = $this->handler_->followingCommits($args->username, $args->token);
+    try {
+      $result->success = $this->handler_->followingCommits($args->username, $args->token);
+    } catch (\Xin\Thrift\MonitorService\ThriftException $ex) {
+      $result->ex = $ex;
+    }
     $bin_accel = ($output instanceof TBinaryProtocolAccelerated) && function_exists('thrift_protocol_write_binary');
     if ($bin_accel)
     {
@@ -143,7 +163,11 @@ class GithubProcessor {
     $args->read($input);
     $input->readMessageEnd();
     $result = new \Xin\Thrift\MonitorService\Github_commitsLog_result();
-    $result->success = $this->handler_->commitsLog($args->committer, $args->btime, $args->etime);
+    try {
+      $result->success = $this->handler_->commitsLog($args->committer, $args->btime, $args->etime);
+    } catch (\Xin\Thrift\MonitorService\ThriftException $ex) {
+      $result->ex = $ex;
+    }
     $bin_accel = ($output instanceof TBinaryProtocolAccelerated) && function_exists('thrift_protocol_write_binary');
     if ($bin_accel)
     {
@@ -162,7 +186,11 @@ class GithubProcessor {
     $args->read($input);
     $input->readMessageEnd();
     $result = new \Xin\Thrift\MonitorService\Github_userProfile_result();
-    $result->success = $this->handler_->userProfile($args->username, $args->token);
+    try {
+      $result->success = $this->handler_->userProfile($args->username, $args->token);
+    } catch (\Xin\Thrift\MonitorService\ThriftException $ex) {
+      $result->ex = $ex;
+    }
     $bin_accel = ($output instanceof TBinaryProtocolAccelerated) && function_exists('thrift_protocol_write_binary');
     if ($bin_accel)
     {

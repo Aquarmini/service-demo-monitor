@@ -21,30 +21,35 @@ interface GithubIf {
    * @param string $username
    * @param string $token
    * @return bool
+   * @throws \Xin\Thrift\MonitorService\ThriftException
    */
   public function receivedEvents($username, $token);
   /**
    * @param string $committer
    * @param string $token
    * @return bool
+   * @throws \Xin\Thrift\MonitorService\ThriftException
    */
   public function commits($committer, $token);
   /**
    * @param string $username
    * @param string $token
    * @return bool
+   * @throws \Xin\Thrift\MonitorService\ThriftException
    */
   public function updateFollowers($username, $token);
   /**
    * @param string $username
    * @param string $token
    * @return bool
+   * @throws \Xin\Thrift\MonitorService\ThriftException
    */
   public function updateFollowing($username, $token);
   /**
    * @param string $username
    * @param string $token
    * @return bool
+   * @throws \Xin\Thrift\MonitorService\ThriftException
    */
   public function followingCommits($username, $token);
   /**
@@ -52,12 +57,14 @@ interface GithubIf {
    * @param int $btime
    * @param int $etime
    * @return \Xin\Thrift\MonitorService\CommitsLog[]
+   * @throws \Xin\Thrift\MonitorService\ThriftException
    */
   public function commitsLog($committer, $btime, $etime);
   /**
    * @param string $username
    * @param string $token
    * @return \Xin\Thrift\MonitorService\UserProfile
+   * @throws \Xin\Thrift\MonitorService\ThriftException
    */
   public function userProfile($username, $token);
 }
