@@ -24,7 +24,6 @@ class GithubHandler extends Handler implements GithubIf
 {
     public function receivedEvents($username, $token)
     {
-        // Log::info("receivedEvents:" . $username . ":" . $token);
         Queue::push(new GithubReceivedEventJob($username, $token));
         return true;
     }

@@ -3,7 +3,7 @@
 namespace App\Jobs;
 
 use App\Jobs\Contract\JobInterface;
-use App\Logics\Github\Events;
+use App\Biz\Github\Events;
 
 class GithubReceivedEventJob implements JobInterface
 {
