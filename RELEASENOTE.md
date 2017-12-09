@@ -7,9 +7,11 @@
 ### Added
 
 ### Changed
+* 修改mkdir为File::makeDirectory方法
 
 ### Fixed
 * 修改InstanceBase getInstance不能返回一个实例的BUG
+* 修改当并发新建日志目录时，如果已存在目录，则不抛出错误
 
 ### Deleted
 * 删除Logic目录
