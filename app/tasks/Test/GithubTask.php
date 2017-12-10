@@ -5,6 +5,7 @@ namespace App\Tasks\Test;
 use App\Biz\Github\Events;
 use App\Biz\Github\Commits;
 use App\Biz\Github\Follow;
+use App\Biz\Github\Release;
 use App\Tasks\Task;
 use App\Thrift\Clients\GithubClient;
 
@@ -95,6 +96,16 @@ class GithubTask extends Task
 
         dd($res);
 
+    }
+
+    public function releaseAction()
+    {
+        $owner = 'limingxinleo';
+        $repo = 'phalcon';
+
+        $res = Release::getInstance()->isRelease($owner, $repo);
+
+        dd($res);
     }
 
 }
