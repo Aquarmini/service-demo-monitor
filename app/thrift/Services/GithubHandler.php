@@ -15,6 +15,7 @@ use App\Jobs\GithubFollowingJob;
 use App\Jobs\GithubReceivedEventJob;
 use App\Biz\Github\Commits;
 use App\Biz\Github\User;
+use App\Jobs\GithubReleaseEventJob;
 use Xin\Thrift\MonitorService\UserProfile;
 use App\Utils\Queue;
 use App\Utils\Redis;
@@ -79,4 +80,8 @@ class GithubHandler extends Handler implements GithubIf
         return $profile;
     }
 
+    public function release($owner, $repo)
+    {
+        return Queue::push(new GithubReleaseEventJob($owner, $repo));
+    }
 }

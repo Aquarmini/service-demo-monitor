@@ -32,6 +32,13 @@ interface GithubIf {
    */
   public function commits($committer, $token);
   /**
+   * @param string $owner
+   * @param string $repo
+   * @return bool
+   * @throws \Xin\Thrift\MonitorService\ThriftException
+   */
+  public function release($owner, $repo);
+  /**
    * @param string $username
    * @param string $token
    * @return bool

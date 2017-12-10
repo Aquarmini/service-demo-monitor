@@ -17,6 +17,9 @@ service Github {
     // 触发消息队列 查看当前的commits数
     bool commits(1:string committer, 2:string token) throws (1:ThriftException ex)
 
+    // 触发消息队列 查看某个仓库是否有最新的Release
+    bool release(1:string owner, 2:string repo) throws (1:ThriftException ex)
+
     // 更新某人的粉丝列表
     bool updateFollowers(1:string username, 2:string token) throws (1:ThriftException ex)
 

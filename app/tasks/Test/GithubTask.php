@@ -100,12 +100,13 @@ class GithubTask extends Task
 
     public function releaseAction()
     {
-        $owner = 'limingxinleo';
-        $repo = 'phalcon';
+        $repos = [
+            ['owner' => 'limingxinleo', 'repo' => 'phalcon'],
+        ];
 
-        $res = Release::getInstance()->isRelease($owner, $repo);
-
-        dd($res);
+        foreach ($repos as $item) {
+            GithubClient::getInstance()->release($item['owner'], $item['repo']);
+        }
     }
 
 }
