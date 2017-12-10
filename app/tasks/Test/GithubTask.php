@@ -102,6 +102,10 @@ class GithubTask extends Task
     {
         $repos = [
             ['owner' => 'limingxinleo', 'repo' => 'phalcon'],
+            ['owner' => 'limingxinleo', 'repo' => 'phalcon-thrift-project'],
+            ['owner' => 'limingxinleo', 'repo' => 'laravel-thrift-project'],
+            ['owner' => 'phalcon', 'repo' => 'cphalcon'],
+            ['owner' => 'apache', 'repo' => 'thrift'],
         ];
 
         foreach ($repos as $item) {
