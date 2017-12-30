@@ -19,4 +19,3 @@ class User extends CacheBase
         return Curl::httpGet($api, [], $token);
     }
 }
-

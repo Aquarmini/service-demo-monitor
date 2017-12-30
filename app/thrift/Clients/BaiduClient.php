@@ -28,6 +28,4 @@ class BaiduClient extends Client
     {
         return parent::getInstance($config);
     }
-
 }
-

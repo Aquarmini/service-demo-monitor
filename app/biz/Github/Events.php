@@ -66,4 +66,3 @@ class Events extends CacheBase
         return true;
     }
 }
-

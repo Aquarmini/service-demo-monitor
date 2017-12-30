@@ -82,5 +82,4 @@ class CommitsLog extends Model
     {
         return 'commits_log';
     }
-
 }

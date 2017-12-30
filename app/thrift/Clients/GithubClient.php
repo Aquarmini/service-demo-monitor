@@ -30,6 +30,4 @@ class GithubClient extends Client
     {
         return parent::getInstance($config);
     }
-
 }
-

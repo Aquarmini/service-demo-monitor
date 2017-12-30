@@ -80,7 +80,6 @@ class Commits extends CacheBase
      */
     public static function send($committer, $token)
     {
-
         $date = date('Y-m-d', time() - 8 * 3600);
         $redis_key = sprintf('github:commits:count:%s:%s', $committer, $date);
 
@@ -193,14 +192,10 @@ class Commits extends CacheBase
                 $model->commits = $count;
                 $model->username = $committer;
                 $model->save();
-
             }
             return true;
         }
 
         return true;
     }
-
-
 }
-

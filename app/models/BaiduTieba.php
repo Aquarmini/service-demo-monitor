@@ -138,5 +138,4 @@ class BaiduTieba extends Model
     {
         return parent::findFirst($parameters);
     }
-
 }

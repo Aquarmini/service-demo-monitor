@@ -7,7 +7,6 @@ use App\Biz\Github\Events;
 
 class GithubReceivedEventJob implements JobInterface
 {
-
     public $token;
 
     public $username;
@@ -25,6 +24,4 @@ class GithubReceivedEventJob implements JobInterface
 
         return Events::sendReceivedEvent($username, $token);
     }
-
 }
-

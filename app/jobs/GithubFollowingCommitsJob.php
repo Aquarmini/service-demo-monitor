@@ -25,4 +25,3 @@ class GithubFollowingCommitsJob implements JobInterface
         return Commits::sendFollowingCommits($username, $token);
     }
 }
-

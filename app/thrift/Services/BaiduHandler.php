@@ -93,6 +93,4 @@ class BaiduHandler extends Handler implements BaiduIf
 
         return $result;
     }
-
-
 }

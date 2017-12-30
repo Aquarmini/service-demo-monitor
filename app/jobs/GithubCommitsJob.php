@@ -25,4 +25,3 @@ class GithubCommitsJob implements JobInterface
         return Commits::send($committer, $token);
     }
 }
-

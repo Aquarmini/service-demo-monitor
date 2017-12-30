@@ -8,7 +8,6 @@
 // +----------------------------------------------------------------------
 namespace App\Common\Enums;
 
-
 class RedisKey
 {
     const GITHUB_RELEASE_LATEST = 'github:release:latest:%s:%s';

@@ -7,7 +7,6 @@ use App\Thrift\Clients\BaiduClient;
 
 class BaiduTask extends Task
 {
-
     public function tiebaSignAction()
     {
         $client = BaiduClient::getInstance();
@@ -35,6 +34,4 @@ class BaiduTask extends Task
         $res = $client->tiebaList('桃园丶龙玉箫');
         dump($res);
     }
-
 }
-

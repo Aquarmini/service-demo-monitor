@@ -29,7 +29,4 @@ class RegisterClient extends Client
     {
         return parent::getInstance($config);
     }
-
-
 }
-

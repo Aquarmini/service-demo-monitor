@@ -71,7 +71,6 @@ class ServiceTask extends Socket
         $this->processor->registerProcessor('github', new GithubProcessor($handler));
         $handler = new BaiduHandler();
         $this->processor->registerProcessor('baidu', new BaiduProcessor($handler));
-
     }
 
     public function receive(swoole_server $server, $fd, $reactor_id, $data)

@@ -112,4 +112,3 @@ class TiebaClient extends CacheBase
         return $tiebas;
     }
 }
-

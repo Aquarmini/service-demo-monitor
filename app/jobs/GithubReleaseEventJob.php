@@ -22,4 +22,3 @@ class GithubReleaseEventJob implements JobInterface
         return Release::getInstance()->isRelease($this->owner, $this->repo);
     }
 }
-

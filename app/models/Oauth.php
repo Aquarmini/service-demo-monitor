@@ -89,5 +89,4 @@ class Oauth extends Model
     {
         return 'oauth';
     }
-
 }

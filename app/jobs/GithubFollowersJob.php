@@ -25,7 +25,9 @@ class GithubFollowersJob implements JobInterface
         $redis_key = "followers:" . $this->username;
         $page = Redis::get($redis_key) ?? 1;
         $page = intval($page);
-        if ($page <= 0) $page = 1;
+        if ($page <= 0) {
+            $page = 1;
+        }
         while ($continue) {
             $res = Follow::followers($this->username, $page, 20, $this->token);
             if (count($res) == 0) {
@@ -37,4 +39,3 @@ class GithubFollowersJob implements JobInterface
         }
     }
 }
-

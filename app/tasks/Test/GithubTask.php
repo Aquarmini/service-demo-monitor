@@ -11,7 +11,6 @@ use App\Thrift\Clients\GithubClient;
 
 class GithubTask extends Task
 {
-
     public function commitsAction()
     {
         $client = GithubClient::getInstance();
@@ -95,7 +94,6 @@ class GithubTask extends Task
         $res = $client->userProfile($username, $token);
 
         dd($res);
-
     }
 
     public function releaseAction()
@@ -112,6 +110,4 @@ class GithubTask extends Task
             GithubClient::getInstance()->release($item['owner'], $item['repo']);
         }
     }
-
 }
-

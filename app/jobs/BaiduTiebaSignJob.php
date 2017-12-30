@@ -22,4 +22,3 @@ class BaiduTiebaSignJob implements JobInterface
         TiebaClient::sign($this->bdUss, $this->nickName);
     }
 }
-

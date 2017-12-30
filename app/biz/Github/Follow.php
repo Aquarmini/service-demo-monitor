@@ -89,4 +89,3 @@ class Follow extends CacheBase
         return $res;
     }
 }
-

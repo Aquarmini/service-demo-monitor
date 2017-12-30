@@ -15,7 +15,6 @@ class Curl
 {
     public static function json($url, $params)
     {
-
         $body = json_encode($params);
 
         $ch = curl_init();
@@ -92,6 +91,4 @@ class Curl
         curl_close($ch);
         return json_decode($result, true);
     }
-
-
 }
