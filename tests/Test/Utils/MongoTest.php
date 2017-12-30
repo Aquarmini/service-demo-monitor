@@ -9,7 +9,7 @@
 namespace Test\Utils;
 
 use App\Utils\Mongo;
-use \UnitTestCase;
+use Tests\UnitTestCase;
 
 class MongoTest extends UnitTestCase
 {
@@ -198,5 +198,4 @@ class MongoTest extends UnitTestCase
             $this->assertEquals('limx', $res[0]->name);
         }
     }
-
 }

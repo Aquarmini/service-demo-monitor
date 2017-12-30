@@ -6,10 +6,10 @@
 // +----------------------------------------------------------------------
 // | Author: limx <715557344@qq.com> <https://github.com/limingxinleo>
 // +----------------------------------------------------------------------
-namespace Test\Models;
+namespace Tests\Test\Models;
 
-use Test\App\Models\Collections\User;
-use \UnitTestCase;
+use Tests\Test\App\Models\Collections\User;
+use Tests\UnitTestCase;
 
 /**
  * Class UnitTest
@@ -30,6 +30,5 @@ class CollectionsTest extends UnitTestCase
 
             $this->assertTrue(count($users) > 0);
         }
-
     }
 }

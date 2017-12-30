@@ -1,25 +1,28 @@
 <?php
 // +----------------------------------------------------------------------
-// | Config 服务 [ WE CAN DO IT JUST THINK IT ]
+// | BaseTest.php [ WE CAN DO IT JUST THINK IT ]
 // +----------------------------------------------------------------------
 // | Copyright (c) 2016-2017 limingxinleo All rights reserved.
 // +----------------------------------------------------------------------
 // | Author: limx <715557344@qq.com> <https://github.com/limingxinleo>
 // +----------------------------------------------------------------------
-namespace App\Core\Services;
+namespace Tests\Thrift;
 
-use Phalcon\DI\FactoryDefault;
-use Phalcon\Config;
+use Tests\UnitTestCase;
 
-class ConfigService implements ServiceProviderInterface
+/**
+ * Class UnitTest
+ */
+class BaseTest extends UnitTestCase
 {
-    public function register(FactoryDefault $di, Config $config)
+    public function testBaseCase()
     {
-        /**
-         * Shared configuration service
-         */
-        $di->setShared('config', function () use ($config) {
-            return $config;
-        });
+        $this->assertTrue(
+            extension_loaded('phalcon')
+        );
+
+        $this->assertTrue(
+            extension_loaded('swoole')
+        );
     }
 }

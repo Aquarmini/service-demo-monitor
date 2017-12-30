@@ -6,13 +6,12 @@
 // +----------------------------------------------------------------------
 // | Author: limx <715557344@qq.com> <https://github.com/limingxinleo>
 // +----------------------------------------------------------------------
-namespace Test\App\Logics;
+namespace Tests\Test\App\Logics;
 
 use App\Core\Support\InstanceBase;
 
 class Ins1 extends InstanceBase
 {
-
     public function str()
     {
         return 'Ins1';

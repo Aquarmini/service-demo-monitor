@@ -2,9 +2,25 @@
 
 ## [Unreleased]
 ### Checked
-- [ ] php单元测试
+- [x] php单元测试
 
 ### Added
+
+### Changed
+* 修改单元测试，增加命名空间Tests
+* 修改代码规范
+
+### Fixed
+* 修改Socket基类的配置，避免覆盖Injectable的config服务
+
+### Deleted
+
+## [2.1.5]
+### Checked
+- [x] php单元测试
+
+### Added
+* 增加数据库端口配置
 
 ### Changed
 * 修改mkdir为File::makeDirectory方法
@@ -15,6 +31,7 @@
 
 ### Deleted
 * 删除Logic目录
+* 删除不符合设计的代码
 
 ## [2.0.7]
 ### Checked

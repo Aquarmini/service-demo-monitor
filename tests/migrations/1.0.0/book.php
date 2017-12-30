@@ -17,7 +17,9 @@ class BookMigration_100 extends Migration
      */
     public function morph()
     {
-        $this->morphTable('book', [
+        $this->morphTable(
+            'book',
+            [
                 'columns' => [
                     new Column(
                         'id',
@@ -53,7 +55,6 @@ class BookMigration_100 extends Migration
                         'created_at',
                         [
                             'type' => Column::TYPE_DATETIME,
-                            'default' => "1900-01-01 00:00:00",
                             'size' => 1,
                             'after' => 'name'
                         ]
@@ -62,7 +63,6 @@ class BookMigration_100 extends Migration
                         'updated_at',
                         [
                             'type' => Column::TYPE_DATETIME,
-                            'default' => "1900-01-01 00:00:00",
                             'size' => 1,
                             'after' => 'created_at'
                         ]
@@ -74,7 +74,7 @@ class BookMigration_100 extends Migration
                 ],
                 'options' => [
                     'TABLE_TYPE' => 'BASE TABLE',
-                    'AUTO_INCREMENT' => '152',
+                    'AUTO_INCREMENT' => '1',
                     'ENGINE' => 'InnoDB',
                     'TABLE_COLLATION' => 'utf8_unicode_ci'
                 ],
@@ -89,7 +89,6 @@ class BookMigration_100 extends Migration
      */
     public function up()
     {
-
     }
 
     /**
@@ -99,7 +98,5 @@ class BookMigration_100 extends Migration
      */
     public function down()
     {
-
     }
-
 }

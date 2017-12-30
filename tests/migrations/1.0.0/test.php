@@ -6,9 +6,9 @@ use Phalcon\Db\Reference;
 use Phalcon\Mvc\Model\Migration;
 
 /**
- * Class UserTitleMigration_100
+ * Class TestMigration_100
  */
-class UserTitleMigration_100 extends Migration
+class TestMigration_100 extends Migration
 {
     /**
      * Define the table structure
@@ -18,52 +18,47 @@ class UserTitleMigration_100 extends Migration
     public function morph()
     {
         $this->morphTable(
-            'user_title',
+            'test',
             [
                 'columns' => [
                     new Column(
-                        'uid',
+                        'id',
                         [
                             'type' => Column::TYPE_INTEGER,
+                            'unsigned' => true,
                             'notNull' => true,
+                            'autoIncrement' => true,
                             'size' => 11,
                             'first' => true
                         ]
                     ),
                     new Column(
-                        'title_id',
+                        'name',
+                        [
+                            'type' => Column::TYPE_VARCHAR,
+                            'default' => "",
+                            'notNull' => true,
+                            'size' => 255,
+                            'after' => 'id'
+                        ]
+                    ),
+                    new Column(
+                        'age',
                         [
                             'type' => Column::TYPE_INTEGER,
+                            'default' => "0",
                             'notNull' => true,
-                            'size' => 11,
-                            'after' => 'uid'
-                        ]
-                    ),
-                    new Column(
-                        'created_at',
-                        [
-                            'type' => Column::TYPE_DATETIME,
-                            'size' => 1,
-                            'after' => 'title_id'
-                        ]
-                    ),
-                    new Column(
-                        'updated_at',
-                        [
-                            'type' => Column::TYPE_DATETIME,
-                            'size' => 1,
-                            'after' => 'created_at'
+                            'size' => 4,
+                            'after' => 'name'
                         ]
                     )
                 ],
                 'indexes' => [
-                    new Index('UID_TITLE_ID_UNIQUE', ['uid', 'title_id'], 'UNIQUE'),
-                    new Index('UID_INDEX', ['uid'], null),
-                    new Index('TITLE_ID_INDEX', ['title_id'], null)
+                    new Index('PRIMARY', ['id'], 'PRIMARY')
                 ],
                 'options' => [
                     'TABLE_TYPE' => 'BASE TABLE',
-                    'AUTO_INCREMENT' => '',
+                    'AUTO_INCREMENT' => '1',
                     'ENGINE' => 'InnoDB',
                     'TABLE_COLLATION' => 'utf8_unicode_ci'
                 ],
