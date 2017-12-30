@@ -4,6 +4,7 @@ namespace App\Tasks\Test;
 
 use App\Tasks\Task;
 use App\Thrift\Clients\BaiduClient;
+use Xin\Cli\Color;
 
 class BaiduTask extends Task
 {
@@ -11,7 +12,9 @@ class BaiduTask extends Task
     {
         $client = BaiduClient::getInstance();
         $res = $client->tiebaSign(env('BAIDU_USS'), '桃园丶龙玉箫');
-        dump($res);
+        if ($res) {
+            echo Color::success('Baidu贴吧签到成功');
+        }
     }
 
     public function tiebasAction()
