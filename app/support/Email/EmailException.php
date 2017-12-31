@@ -10,5 +10,4 @@ namespace App\Support\Email;
 
 class EmailException extends \Exception
 {
-
 }

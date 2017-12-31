@@ -35,6 +35,4 @@ class SendEmailJob implements JobInterface
         }
         return false;
     }
-
 }
-

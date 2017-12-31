@@ -130,5 +130,4 @@ class Email
         $this->subject = null;
         $this->body = null;
     }
-
 }
