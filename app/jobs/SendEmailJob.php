@@ -20,7 +20,6 @@ class SendEmailJob implements JobInterface
         $this->redis = $redis;
         $this->emails = $emails;
         $this->content = $content;
-        dump($this->emails);
     }
 
     public function handle()
