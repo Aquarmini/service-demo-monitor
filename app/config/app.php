@@ -15,4 +15,12 @@ return [
     'error-code' => [
         500 => '服务器错误！',
     ],
+
+    'email' => [
+        'email' => env('SEND_EMAIL'),
+        'password' => env('SEND_EMAIL_PASSWORD'),
+        'name' => env('SEND_EMAIL_NAME', '邮件代理服务器'),
+        'host' => env('SEND_EMAIL_HOST'),
+        'port' => env('SEND_EMAIL_PORT'),
+    ],
 ];

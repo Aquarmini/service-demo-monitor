@@ -27,6 +27,7 @@ $loader
             'Xin\Thrift' => ROOT_PATH . '/thrift/gen-php/Xin/Thrift/',
             'App\Biz' => APP_PATH . '/biz/',
             'App\Common' => APP_PATH . '/common/',
+            'App\Support' => APP_PATH . '/support/',
         ]
     )->registerFiles(
         [
