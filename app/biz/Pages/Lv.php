@@ -94,14 +94,11 @@ class Lv
                         'key' => $key,
                         'val' => 0,
                     ];
-                    $emails = [
-                        ['email' => '71555344@qq.com', 'name' => '李铭昕']
-                    ];
                     $content = [
                         'title' => "{$name}没货了！！",
                         'content' => "购买地址{$url}",
                     ];
-                    Queue::push(new SendEmailJob($redis, $emails, $content));
+                    Queue::push(new SendEmailJob($redis, $this->emails, $content));
                 }
             }
         }
