@@ -49,16 +49,20 @@ class Lv
     {
         $key = 'lv:' . md5($url);
         $name = $key;
-
+        $sku = '';
         preg_match('/\#(.*)$/', $url, $result);
-        if (!isset($result[1])) {
-            $res = $this->httpGet($url);
-            $res = preg_replace('/ |\n/', '', $res);
-            preg_match('/data-sku="(.*)"/U', $res, $result);
-        }
-
         if (isset($result[1])) {
             $sku = $result[1];
+        }
+
+        $res = $this->httpGet($url);
+        $res = preg_replace('/ |\n/', '', $res);
+        preg_match('/data-sku="(.*)"/U', $res, $result);
+
+        if (isset($result[1])) {
+            if (empty($sku)) {
+                $sku = $result[1];
+            }
             $result = $this->httpGet($this->getIsStockUrl($sku));
             $result = json_decode($result, true);
 
