@@ -56,6 +56,7 @@ class Oauth extends Model
     {
         $this->setSchema("github");
         $this->setSource("oauth");
+        parent::initialize();
     }
 
     /**

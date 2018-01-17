@@ -128,7 +128,7 @@ class User extends Model
             'email',
             new EmailValidator(
                 [
-                    'model'   => $this,
+                    'model' => $this,
                     'message' => 'Please enter a correct email address',
                 ]
             )
@@ -144,6 +144,7 @@ class User extends Model
     {
         $this->setSchema("github");
         $this->setSource("user");
+        parent::initialize();
     }
 
     /**

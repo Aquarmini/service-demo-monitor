@@ -49,6 +49,7 @@ class CommitsLog extends Model
     {
         $this->setSchema("github");
         $this->setSource("commits_log");
+        parent::initialize();
     }
 
     /**

@@ -63,6 +63,7 @@ class Followers extends Model
     {
         $this->setSchema("github");
         $this->setSource("followers");
+        parent::initialize();
     }
 
     /**

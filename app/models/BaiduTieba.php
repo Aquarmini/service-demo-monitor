@@ -105,6 +105,7 @@ class BaiduTieba extends Model
     {
         $this->setSchema("github");
         $this->setSource("baidu_tieba");
+        parent::initialize();
     }
 
     /**
