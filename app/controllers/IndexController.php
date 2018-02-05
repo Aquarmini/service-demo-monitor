@@ -24,9 +24,10 @@ class IndexController extends Controller
     public function indexAction()
     {
         if ($this->request->isPost()) {
+            $message = di('configCenter')->get('msg')->welcome;
             return Response::success([
                 'version' => System::getInstance()->version(),
-                'message' => "You're now flying with Phalcon. Great things are about to happen!",
+                'message' => $message,
             ]);
         }
         $this->view->version = System::getInstance()->version();
