@@ -8,7 +8,10 @@
 // +----------------------------------------------------------------------
 namespace App\Controllers;
 
+use App\Common\Enums\ErrorCode;
+use App\Common\Exceptions\BizException;
 use App\Core\System;
+use App\Utils\Response;
 
 class IndexController extends Controller
 {
@@ -21,12 +24,17 @@ class IndexController extends Controller
     public function indexAction()
     {
         if ($this->request->isPost()) {
-            return $this->response->setJsonContent([
+            return Response::success([
                 'version' => System::getInstance()->version(),
                 'message' => "You're now flying with Phalcon. Great things are about to happen!",
             ]);
         }
         $this->view->version = System::getInstance()->version();
         return $this->view->render('index', 'index');
+    }
+
+    public function exceptionAction()
+    {
+        throw new BizException(ErrorCode::$ENUM_SYSTEM_ERROR);
     }
 }
