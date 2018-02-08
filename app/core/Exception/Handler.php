@@ -77,7 +77,12 @@ class Handler
     public function renderForConsole(Exception $ex)
     {
         $msg = $ex->getMessage() . ' code:' . $ex->getCode() . ' in ' . $ex->getFile() . ' line ' . $ex->getLine() . PHP_EOL . $ex->getTraceAsString();
-        $this->logger->error($msg);
+        if ($ex instanceof ExceptionInterface) {
+            // 业务异常
+            $this->logger->error($msg);
+        } else {
+            $this->errorLogger->error($msg);
+        }
         echo $msg;
         exit(255);
     }
