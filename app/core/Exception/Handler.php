@@ -31,7 +31,6 @@ class Handler
         $this->di = FactoryDefault::getDefault();
         $this->logger = di('logger')->getLogger('exception', Sys::LOG_ADAPTER_FILE);
         $this->errorLogger = di('logger')->getLogger('error', Sys::LOG_ADAPTER_FILE);
-
     }
 
     public static function getInstance()
