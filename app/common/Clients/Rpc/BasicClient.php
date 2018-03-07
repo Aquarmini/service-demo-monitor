@@ -19,9 +19,12 @@ class BasicClient extends Client
 {
     public function __construct()
     {
-        $this->service = 'test';
-        $this->port = di('config')->rpc->port;
-        $this->host = di('config')->rpc->host;
+        $service = 'test';
+        $rpc = get_rpc_config($service);
+
+        $this->service = $service;
+        $this->port = $rpc->port;
+        $this->host = $rpc->host;
 
         parent::__construct();
     }
