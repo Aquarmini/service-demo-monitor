@@ -16,7 +16,7 @@ if (!function_exists('get_rpc_config')) {
     function get_rpc_config($service)
     {
         $env = di('config')->env;
-        $rpc = di('configCenter')->get('rpcClients');
+        $rpc = di('configCenter')->get('rpc_clients');
         if (!isset($rpc->$env) || !isset($rpc->$env->$service)) {
             throw new \Exception('RPC CLIENT 配置不存在');
         }
