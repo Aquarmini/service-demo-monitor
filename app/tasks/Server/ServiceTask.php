@@ -3,6 +3,7 @@
 namespace App\Tasks\Server;
 
 use App\Biz\Service\BasicService;
+use App\Common\Logger\Rpc\LoggerHandler;
 use App\Tasks\Task;
 use Xin\Phalcon\Cli\Traits\Input;
 use Xin\Swoole\Rpc\Server;
@@ -21,6 +22,7 @@ class ServiceTask extends Task
         $port = $this->option('port', $rpc->port);
 
         $server->setHandler('test', BasicService::getInstance());
+        $server->setLoggerHandler(LoggerHandler::getInstance());
         $server->serve($host, $port, [
             'pid_file' => $pid,
             'daemonize' => $daemonize,
