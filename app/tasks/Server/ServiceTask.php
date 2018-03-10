@@ -27,6 +27,4 @@ class ServiceTask extends Task
             'max_request' => 500,
         ]);
     }
-
 }
-
