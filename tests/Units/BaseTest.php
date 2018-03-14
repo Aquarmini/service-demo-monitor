@@ -8,7 +8,6 @@
 // +----------------------------------------------------------------------
 namespace Tests\Units;
 
-use App\Common\Clients\Rpc\BasicClient;
 use Tests\UnitTestCase;
 
 /**
@@ -20,14 +19,6 @@ class BaseTest extends UnitTestCase
     {
         $this->assertTrue(
             extension_loaded('phalcon')
-        );
-    }
-
-    public function testRpcServiceCase()
-    {
-        $this->assertEquals(
-            di('config')->version,
-            BasicClient::getInstance()->version()
         );
     }
 }
