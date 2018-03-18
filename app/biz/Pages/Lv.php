@@ -132,7 +132,7 @@ class Lv
         $result = curl_exec($ch);
 
         if ($result === false) {
-            throw new HttpException(curl_error($ch));
+            throw new \Exception(curl_error($ch));
         }
         //关闭URL请求
         curl_close($ch);
