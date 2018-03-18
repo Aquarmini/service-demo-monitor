@@ -28,8 +28,10 @@ class LvTask extends Task
             ->bindGoods('http://www.louisvuitton.cn/zhs-cn/products/dandy-briefcase-pm-epi-014551')
             ->bindGoods('http://www.louisvuitton.cn/zhs-cn/products/pochette-metis-monogram-empreinte-nvprod630173v#M44071')
             ->bindGoods('https://www.louisvuitton.cn/zhs-cn/products/toiletry-pouch-26-monogram-000767#M47542')
+            ->bindGoods('https://www.louisvuitton.cn/zhs-cn/products/square-bag-nvprod750010v')
             ->bindEmails(env('LV_LIMX_NAME'), env('LV_LIMX_EMAIL'))
             ->bindEmails(env('LV_AGNES_NAME'), env('LV_AGNES_EMAIL'))
+            // ->bindEmails(env('LV_XXX01_NAME'), env('LV_XXX01_EMAIL'))
             ->all();
     }
 }
