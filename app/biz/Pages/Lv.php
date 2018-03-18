@@ -23,9 +23,21 @@ class Lv
 
     public $emails = [];
 
+    public $skus = [];
+
     public function bindGoods($url)
     {
         $this->goods[] = $url;
+        return $this;
+    }
+
+    public function bindSku($sku, $name, $url)
+    {
+        $this->skus[] = [
+            'sku' => $sku,
+            'name' => $name,
+            'url' => $url
+        ];
         return $this;
     }
 
@@ -40,9 +52,52 @@ class Lv
 
     public function all()
     {
-        foreach ($this->goods as $goods) {
-            $this->one($goods);
+        // foreach ($this->goods as $goods) {
+        //     $this->one($goods);
+        // }
+        foreach ($this->skus as $sku) {
+            $this->sku($sku['sku'], $sku['name'], $sku['url']);
         }
+    }
+
+    public function sku($sku, $name, $url)
+    {
+        $key = 'lv:' . $sku;
+
+        $result = $this->httpGet($this->getIsStockUrl($sku));
+        $result = json_decode($result, true);
+
+        if (isset($result[$sku]) && $result[$sku]['inStock']) {
+            // 有货
+
+            if (Redis::get($key) == 0) {
+                // 发送邮件
+                $redis = [
+                    'key' => $key,
+                    'val' => 1,
+                ];
+                $content = [
+                    'title' => "{$name}有货了！！",
+                    'content' => "购买地址{$url}",
+                ];
+                Queue::push(new SendEmailJob($redis, $this->emails, $content));
+            }
+        } else {
+            // 无货
+            if (!Redis::keys($key) || Redis::get($key) == 1) {
+                // 发送邮件
+                $redis = [
+                    'key' => $key,
+                    'val' => 0,
+                ];
+                $content = [
+                    'title' => "{$name}没货了！！",
+                    'content' => "购买地址{$url}",
+                ];
+                Queue::push(new SendEmailJob($redis, $this->emails, $content));
+            }
+        }
+
     }
 
     public function one($url)
