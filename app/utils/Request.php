@@ -26,7 +26,10 @@ class Request
             return $default;
         }
         $data = $request->get();
-        $json = $request->getJsonRawBody(true) ?? [];
+        $json = $request->getJsonRawBody(true);
+        if (empty($json)) {
+            return $data;
+        }
 
         return array_merge($data, $json);
     }
