@@ -27,6 +27,8 @@ class ServiceTask extends Task
             'pid_file' => $pid,
             'daemonize' => $daemonize,
             'max_request' => 500,
+            'open_eof_check' => true,
+            'package_eof' => "\r\n",
         ]);
     }
 }
