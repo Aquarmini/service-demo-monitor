@@ -6,8 +6,10 @@ use App\Biz\Github\Events;
 use App\Biz\Github\Commits;
 use App\Biz\Github\Follow;
 use App\Biz\Github\Release;
+use App\Jobs\GithubReleaseEventJob;
 use App\Tasks\Task;
 use App\Thrift\Clients\GithubClient;
+use App\Utils\Queue;
 
 class GithubTask extends Task
 {
@@ -107,7 +109,7 @@ class GithubTask extends Task
         ];
 
         foreach ($repos as $item) {
-            GithubClient::getInstance()->release($item['owner'], $item['repo']);
+            Queue::push(new GithubReleaseEventJob($item['owner'], $item['repo']));
         }
     }
 }
