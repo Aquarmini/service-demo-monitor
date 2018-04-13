@@ -1,21 +1,18 @@
 <?php
 // +----------------------------------------------------------------------
-// | Model.php [ WE CAN DO IT JUST THINK IT ]
+// | rpc_clients.php [ WE CAN DO IT JUST THINK IT ]
 // +----------------------------------------------------------------------
 // | Copyright (c) 2016-2017 limingxinleo All rights reserved.
 // +----------------------------------------------------------------------
 // | Author: limx <715557344@qq.com> <https://github.com/limingxinleo>
 // +----------------------------------------------------------------------
-namespace App\Core\Mvc;
+$rpc = di('config')->rpc;
 
-/**
- * Class Model
- * @package App\Models
- * @method initialize
- * @method beforeCreate
- * @method beforeUpdate
- * @method afterSave
- */
-abstract class Model extends \Phalcon\Mvc\Model
-{
-}
+return [
+    'local' => [
+        'test' => [
+            'host' => '127.0.0.1',
+            'port' => $rpc->port
+        ],
+    ],
+];

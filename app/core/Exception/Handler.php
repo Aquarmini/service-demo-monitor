@@ -8,6 +8,9 @@
 // +----------------------------------------------------------------------
 namespace App\Core\Exception;
 
+use App\Common\Enums\ErrorCode;
+use App\Common\Exceptions\ExceptionInterface;
+use App\Utils\Response;
 use Exception;
 use ErrorException;
 use Phalcon\DI\FactoryDefault;
@@ -21,10 +24,13 @@ class Handler
 
     public $logger;
 
+    public $errorLogger;
+
     private function __construct()
     {
         $this->di = FactoryDefault::getDefault();
-        $this->logger = di('logger')->getLogger('error', Sys::LOG_ADAPTER_FILE);
+        $this->logger = di('logger')->getLogger('exception', Sys::LOG_ADAPTER_FILE);
+        $this->errorLogger = di('logger')->getLogger('error', Sys::LOG_ADAPTER_FILE);
     }
 
     public static function getInstance()
@@ -42,13 +48,23 @@ class Handler
      */
     public function render(Exception $ex)
     {
+        $code = ErrorCode::$ENUM_SYSTEM_ERROR;
+        $message = 'Sorry, 服务器内部错误';
         $msg = $ex->getMessage() . ' code:' . $ex->getCode() . ' in ' . $ex->getFile() . ' line ' . $ex->getLine() . PHP_EOL . $ex->getTraceAsString();
-        $this->logger->error($msg);
-        if (env('APP_DEBUG', false)) {
-            echo $msg;
+
+        if ($ex instanceof ExceptionInterface) {
+            // 业务异常
+            $this->logger->error($msg);
+            $code = $ex->getErrorCode();
+            $message = $ex->getMessage();
         } else {
-            echo 'Sorry, 服务器内部错误';
+            $this->errorLogger->error($msg);
+            if (env('APP_DEBUG', false)) {
+                $message = $ex->getMessage();
+            }
         }
+
+        Response::fail($code, $message)->send();
         exit(255);
     }
 
@@ -60,7 +76,12 @@ class Handler
     public function renderForConsole(Exception $ex)
     {
         $msg = $ex->getMessage() . ' code:' . $ex->getCode() . ' in ' . $ex->getFile() . ' line ' . $ex->getLine() . PHP_EOL . $ex->getTraceAsString();
-        $this->logger->error($msg);
+        if ($ex instanceof ExceptionInterface) {
+            // 业务异常
+            $this->logger->error($msg);
+        } else {
+            $this->errorLogger->error($msg);
+        }
         echo $msg;
         exit(255);
     }

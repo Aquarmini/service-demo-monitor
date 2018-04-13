@@ -26,7 +26,7 @@ return new Config(
         | This value is version for this project.
         |
         */
-        'version' => 'v1.4.0',
+        'version' => '2.2.10',
 
         /*
         |--------------------------------------------------------------------------
@@ -130,6 +130,8 @@ return new Config(
         |
         */
         'application' => [
+            'bizDir' => APP_PATH . '/biz/',
+            'commonDir' => APP_PATH . '/common/',
             'configDir' => APP_PATH . '/config/',
             'controllersDir' => APP_PATH . '/controllers/',
             'coreDir' => APP_PATH . '/core/',
@@ -143,9 +145,11 @@ return new Config(
             'viewsDir' => APP_PATH . '/views/',
 
             'cacheDir' => ROOT_PATH . '/storage/cache/',
+            'lockDir' => ROOT_PATH . '/storage/lock/',
             'logDir' => ROOT_PATH . '/storage/log/',
             'metaDataDir' => ROOT_PATH . '/storage/meta/',
             'migrationsDir' => ROOT_PATH . '/storage/migrations/',
+            'pidsDir' => ROOT_PATH . '/storage/pids/',
             'baseUri' => '/',
         ],
 
@@ -263,7 +267,6 @@ return new Config(
         'services' => [
             'common' => [
                 'config' => App\Core\Services\ConfigService::class, // 系统配置
-                'app' => App\Core\Services\App::class, // 自定义配置
                 'db' => App\Core\Services\Db::class,
                 'modelsMetadata' => App\Core\Services\ModelsMetadata::class,
                 'filter' => App\Core\Services\Filter::class,
@@ -288,6 +291,7 @@ return new Config(
                 'view' => App\Core\Services\Mvc\View::class,
                 'dispatcher' => App\Core\Services\Mvc\Dispatcher::class,
                 'middleware' => App\Core\Services\Mvc\Middleware::class,
+                'request' => App\Core\Services\Mvc\Request::class,
             ],
         ],
 
@@ -310,6 +314,20 @@ return new Config(
                     'max_request' => 500,
                 ],
             ],
+        ],
+
+        /*
+        |--------------------------------------------------------------------------
+        | RPC
+        |--------------------------------------------------------------------------
+        |
+        | 内部通信协议配置
+        |
+        */
+        'rpc' => [
+            'host' => env('RPC_HOST', '0.0.0.0'),
+            'port' => env('RPC_PORT', 11521),
+            'daemonize' => env('RPC_DAEMONIZE', false),
         ],
     ]
 );

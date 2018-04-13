@@ -2,15 +2,47 @@
 
 ## [Unreleased]
 ### Checked
+- [ ] php单元测试
+
+### Added
+
+### Changed
+* 修改目录结构
+
+### Fixed
+
+### Deleted
+
+## [2.2.10]
+### Checked
 - [x] php单元测试
 
 ### Added
+* 增加Request服务
+* 增加锁目录
+* 增加PID目录
+* 增加调度器基类
+* 增加Travis支持
+
+### Changed
+* 修改消息队列逻辑
+* 修改用于Http接口的单元测试基类
+* 优化WebSocket和Socket基类
+* 修改MvcDispatcher71使用版本为大于等于7.1
+
+### Fixed
+* 修改Mongodb用户名密码为空时无法使用的BUG
+
+## [2.2.5]
+### Checked
+- [x] php单元测试
 
 ### Changed
 * 修改单元测试，增加命名空间Tests
 * 修改代码规范
 * 修改vendor/autoload的加载位置
 * 默认phalcon-dev脚本加载app/bootstrap.php
+* 修改中间件默认执行顺序
 
 ### Fixed
 * 修改Socket基类的配置，避免覆盖Injectable的config服务
@@ -19,6 +51,7 @@
 * 删除多余注释
 * 删除updateOnly，使用useDynamicUpdate代替
 * 移除单元测试
+* 删除App自定义配置服务
 
 ## [2.1.5]
 ### Checked

@@ -6,18 +6,21 @@
 // +----------------------------------------------------------------------
 // | Author: limx <715557344@qq.com> <http://www.lmx0536.cn>
 // +----------------------------------------------------------------------
-use limx\Support\Arr;
-
-if (!function_exists('app')) {
+if (!function_exists('get_rpc_config')) {
     /**
-     * @desc   获取app配置文件的值
+     * @desc   获取微服务配置
      * @author limx
-     * @param $id
-     * @return null
+     * @param $service 服务名
+     * @return mixed
      */
-    function app($id)
+    function get_rpc_config($service)
     {
-        $app = di('app');
-        return Arr::get($app, $id);
+        $env = di('config')->env;
+        $rpc = di('configCenter')->get('rpc_clients');
+        if (!isset($rpc->$env) || !isset($rpc->$env->$service)) {
+            throw new \Exception('RPC CLIENT 配置不存在');
+        }
+
+        return $rpc->$env->$service;
     }
 }

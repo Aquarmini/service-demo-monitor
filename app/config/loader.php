@@ -25,12 +25,12 @@ $loader
             'App\Core' => $config->application->coreDir,
             'App\Middleware' => $config->application->middlewareDir,
             'Xin\Thrift' => ROOT_PATH . '/thrift/gen-php/Xin/Thrift/',
-            'App\Biz' => APP_PATH . '/biz/',
-            'App\Common' => APP_PATH . '/common/',
             'App\Support' => APP_PATH . '/support/',
+            'App\Biz' => $config->application->bizDir,
+            'App\Common' => $config->application->commonDir,
         ]
     )->registerFiles(
         [
-            'function' => $config->application->coreDir . 'helper.php',
+            $config->application->coreDir . 'helper.php',
         ]
     )->register();
