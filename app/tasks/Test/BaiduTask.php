@@ -2,16 +2,17 @@
 
 namespace App\Tasks\Test;
 
+use App\Jobs\BaiduTiebaSignJob;
 use App\Tasks\Task;
 use App\Thrift\Clients\BaiduClient;
+use App\Utils\Queue;
 use Xin\Cli\Color;
 
 class BaiduTask extends Task
 {
     public function tiebaSignAction()
     {
-        $client = BaiduClient::getInstance();
-        $res = $client->tiebaSign(env('BAIDU_USS'), '桃园丶龙玉箫');
+        $res = Queue::push(new BaiduTiebaSignJob(env('BAIDU_USS'), '桃园丶龙玉箫'));
         if ($res) {
             echo Color::success('Baidu贴吧签到成功');
         }
