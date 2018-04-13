@@ -34,7 +34,7 @@ class Email
     private function __construct()
     {
         /** @var Config $config */
-        $config = di('app')->email;
+        $config = di('configCenter')->get('email');
         $validator = new EmailValidator();
         if ($validator->validate($config->toArray())->valid()) {
             throw new EmailException($validator->getErrorMessage());
